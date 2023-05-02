@@ -1,29 +1,41 @@
 import React from "react";
 import { useHome } from "./useHome";
+import { Box, Typography } from "@mui/material";
 
 export function Home() {
   const hook = useHome();
+  const img = hook.animes.shift();
   return (
-    <div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
-        {hook.animes.map(({ id, name, photo }) => (
-          <div
+    <Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "3rem",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="h1" color="#4361ee">
+          My Anime List
+        </Typography>
+        <Box
+          sx={{
+            width: "256px",
+            height: "100px",
+            borderRadius: "33px",
+          }}
+        >
+          <img
+            src={img?.photo}
             style={{
-              display: "flex",
-              flexDirection: "column",
-              padding: "1.5rem",
-              gap: "2rem",
-              backgroundColor: "blue",
-              borderRadius: "8px",
+              objectFit: "cover",
+              width: "256px",
+              height: "100px",
+              borderRadius: "33px",
             }}
-            key={id}
-          >
-            <h4>{name}</h4>
-
-            <img src={photo} height={128} width={128} />
-          </div>
-        ))}
-      </div>
-    </div>
+          />
+        </Box>
+      </Box>
+    </Box>
   );
 }
