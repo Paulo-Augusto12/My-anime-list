@@ -10,6 +10,7 @@ import { RequestService } from "../../../domain/services/requestService";
 // Repositories
 
 import { AnimesRepository } from "../../../data/AnimesRepository";
+import { CharactersRepository } from "../../../data/CharactersRepository";
 
 //
 
@@ -18,6 +19,7 @@ import { AnimesRepository } from "../../../data/AnimesRepository";
 import { SearchForAnAnimeUseCase } from "../../../domain/useCases/AnimeUseCases/SearchForAnAnimeUseCase";
 import { GetTrendingAnimesUseCase } from "../../../domain/useCases/AnimeUseCases/GetTrendingAnimesUseCase";
 import { GetAllAnimeUseCase } from "../../../domain/useCases/AnimeUseCases/GetAllAnimesUseCase";
+import { GetARandomCharacterUseCase } from "../../../domain/useCases/CharacterUseCase/GetARandomCharacterUseCase";
 
 //
 
@@ -39,6 +41,12 @@ const animeRepository = new AnimesRepository(httpService);
 
 //
 
+// Characters Repository
+
+const charactersRepository = new CharactersRepository(httpService);
+
+//
+
 //  getAllAnimesUseCase
 
 const getAnimeUseCase = new GetAllAnimeUseCase(animeRepository);
@@ -57,10 +65,19 @@ const getTrendingAnimesUseCase = new GetTrendingAnimesUseCase(animeRepository);
 
 //
 
+// getARandomCharacterUseCase
+
+const getARandomCharacterUseCase = new GetARandomCharacterUseCase(
+  charactersRepository
+);
+
+//
+
 export function useHome() {
   const [animes, setAnimes] = useState<AnimeModel[]>([]);
   const [trendingAnimes, setTrendingAnimes] = useState<AnimeModel[]>([]);
   const [animeQuery, setAnimeQuery] = useState("");
+  const [randomCharacterPhoto, setRandomCharacterPhoto] = useState("");
 
   async function getAnimes() {
     const params = {
@@ -103,22 +120,35 @@ export function useHome() {
     }
   }
 
+  async function getARandomCharacterPhoto() {
+    const data = await getARandomCharacterUseCase.execute();
+
+    setRandomCharacterPhoto(data.photo);
+  }
+
   useEffect(() => {
     if (!animes.length) {
       getAnimes();
     }
-  }, [animes]);
+  }, []);
 
   useEffect(() => {
     if (!trendingAnimes.length) {
       getTrendingAnimes();
     }
-  }, [trendingAnimes]);
+  }, []);
+
+  useEffect(() => {
+    if (!randomCharacterPhoto.trim()) {
+      getARandomCharacterPhoto();
+    }
+  }, []);
 
   return {
     animes,
     animeQuery,
     setAnimeQuery,
     searchAnime,
+    randomCharacterPhoto
   };
 }
