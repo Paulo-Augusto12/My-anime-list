@@ -92,13 +92,13 @@ export function useHome() {
     if (!animes.length) {
       getAnimes();
     }
-  }, []);
+  }, [animes]);
 
   useEffect(() => {
     if (!trendingAnimes.length) {
         getTrendingAnimes();
       }
-  },[])
+  },[trendingAnimes])
 
   return {
     animes,
