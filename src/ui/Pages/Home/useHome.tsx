@@ -82,7 +82,7 @@ export function useHome() {
 
       const data = await getTrendingAnimesUseCase.execute(params);
 
-      setTrendingAnimes(data)
+      setTrendingAnimes(data);
     } catch (err) {
       console.log(JSON.stringify(err));
     }
@@ -96,9 +96,9 @@ export function useHome() {
 
   useEffect(() => {
     if (!trendingAnimes.length) {
-        getTrendingAnimes();
-      }
-  },[trendingAnimes])
+      getTrendingAnimes();
+    }
+  }, [trendingAnimes]);
 
   return {
     animes,
