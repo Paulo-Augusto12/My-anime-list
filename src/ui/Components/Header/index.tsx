@@ -23,10 +23,12 @@ import { MagnifyingGlass } from "@phosphor-icons/react";
 interface IHeaderProps {
   animeQueryValue: string;
   setSearchBarAnimeQueryValue: (value: React.SetStateAction<string>) => void;
+  handleSubmit: () => void;
 }
 export function Header({
   animeQueryValue,
   setSearchBarAnimeQueryValue,
+  handleSubmit,
 }: IHeaderProps) {
   const hook = useHeader();
 
@@ -79,7 +81,11 @@ export function Header({
             style: { borderRadius: "35px" },
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton>
+                <IconButton
+                  onClick={() => {
+                    handleSubmit();
+                  }}
+                >
                   <MagnifyingGlass size={32} color="#495057" />
                 </IconButton>
               </InputAdornment>
