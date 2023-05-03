@@ -1,4 +1,3 @@
-import { AnimeDTO } from "../../dto/AnimeDTO";
 import { IGetAllAnimeRepository } from "../../interfaces/AnimeRepository/IGetAllAnimeRepository";
 import { AnimeModel } from "./Models/AnimeModels";
 import {
@@ -13,7 +12,7 @@ export class GetAllAnimeUseCase implements IGetAllAnimeUseCase {
     try {
       const response = await this.repository.getAllAnimes(params);
 
-      return response.data.animes.map(
+      return response.data.data.map(
         (anime) =>
           new AnimeModel(
             anime.title_english,
@@ -22,7 +21,7 @@ export class GetAllAnimeUseCase implements IGetAllAnimeUseCase {
           )
       );
     } catch (err: any) {
-      throw new Error("[ USE CASE ]", err);
+      throw new Error(err);
     }
   }
 }
