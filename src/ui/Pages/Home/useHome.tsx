@@ -20,7 +20,10 @@ export function useHome() {
       const data = await getAnimeUseCase.execute(params);
       setAnimes(data);
     } catch (err) {
-      console.log("[ UI ]", err);
+      console.log(
+        "[ ERROR DURING USE CASE CALL ]",
+        JSON.stringify(err)
+      );
     }
   }
 
