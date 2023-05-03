@@ -34,15 +34,15 @@ export function Home() {
             borderRadius: "33px",
           }}
         >
-          {/* <img
-            src={hook.animePhoto}
+          <img
+            src={hook.randomCharacterPhoto}
             style={{
-              objectFit: "cover",
+              objectFit: "fill",
               width: "256px",
               height: "100px",
               borderRadius: "33px",
             }}
-          /> */}
+          />
         </Box>
       </Box>
     </Box>
