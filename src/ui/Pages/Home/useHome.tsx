@@ -149,6 +149,7 @@ export function useHome() {
     animeQuery,
     setAnimeQuery,
     searchAnime,
-    randomCharacterPhoto
+    randomCharacterPhoto,
+    trendingAnimes
   };
 }

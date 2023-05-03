@@ -5,6 +5,7 @@ import React from "react";
 import {
   Box,
   Button,
+  Card,
   IconButton,
   InputAdornment,
   TextField,
@@ -35,10 +36,9 @@ export function Header({
   return (
     <Box
       sx={{
-        padding: "2rem",
         display: "flex",
         flexDirection: "row",
-        gap: "5rem",
+        gap: "3rem",
         alignItems: "center",
         marginBottom: "2rem",
         justifyContent: "space-between",
@@ -49,11 +49,11 @@ export function Header({
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          gap: "5rem",
+          gap: "3rem",
         }}
       >
         <Typography fontWeight={700} variant="h4">
-          My Anime List
+          MyAnimeList
         </Typography>
         {hook.headerNavItems.map((element) => (
           <Button
@@ -74,12 +74,12 @@ export function Header({
           </Button>
         ))}
       </Box>
-      <Box sx={{ width: "35%" }}>
+      <Box sx={{ width: "25%" }}>
         <TextField
           fullWidth
           sx={{ borderRadius: 115 }}
           InputProps={{
-            style: { borderRadius: "35px" },
+            style: { borderRadius: "50px" },
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
