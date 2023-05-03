@@ -12,6 +12,9 @@ export function Home() {
         setSearchBarAnimeQueryValue={(e) => {
           hook.setAnimeQuery(e);
         }}
+        handleSubmit={() => {
+          hook.searchAnime();
+        }}
       />
       <Box
         sx={{
