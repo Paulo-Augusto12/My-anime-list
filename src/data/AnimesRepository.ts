@@ -1,9 +1,8 @@
-import { AnimeDTO } from "../domain/dto/AnimeDTO";
-
 // Repository interfaces
 
 import { IGetAllAnimeRepository } from "../domain/interfaces/AnimeRepository/IGetAllAnimeRepository";
 import { ISearchForAnAnimeRepository } from "../domain/interfaces/AnimeRepository/ISearchForAnAnimeRepository";
+import { IGetTrendingAnimesRepository } from "../domain/interfaces/AnimeRepository/IGetTrendingAnimesRepository";
 
 //
 
@@ -17,11 +16,22 @@ import { IHttpService } from "../domain/interfaces/http/IHttpService";
 // Repository request params
 
 import { IGetAllAnimeRequestParams } from "../domain/useCases/AnimeUseCases/abstractions/IGetAllAnimeUseCase";
+import { IGetTrendingAnimeRequestParams } from "../domain/useCases/AnimeUseCases/abstractions/IGetTrendingAnimesUseCase";
+
+//
+
+// DTO's
+
+import { AnimeDTO } from "../domain/dto/AnimeDTO";
+import { TrendingAnimeDTO } from "../domain/dto/TrendingAnimeDTO";
 
 //
 
 export class AnimesRepository
-  implements IGetAllAnimeRepository, ISearchForAnAnimeRepository
+  implements
+    IGetAllAnimeRepository,
+    ISearchForAnAnimeRepository,
+    IGetTrendingAnimesRepository
 {
   constructor(private httpService: IHttpService) {}
 
@@ -40,6 +50,17 @@ export class AnimesRepository
     const response = await this.httpService.getData(
       `https://api.jikan.moe/v4/anime?q=${query}`,
       query
+    );
+
+    return response;
+  }
+
+  async getTrendingAnimes(
+    params: IGetTrendingAnimeRequestParams
+  ): Promise<HttpResponse<TrendingAnimeDTO>> {
+    const response = await this.httpService.getData(
+      `https://api.jikan.moe/v4/top/anime?type=${params.type}&filter=${params.filterBy}&page=${params.page}&limit=${params.limit}`,
+      params
     );
 
     return response;
