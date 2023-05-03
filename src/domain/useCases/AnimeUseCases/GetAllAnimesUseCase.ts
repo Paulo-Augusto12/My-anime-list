@@ -20,8 +20,9 @@ export class GetAllAnimeUseCase implements IGetAllAnimeUseCase {
             anime.episodes
           )
       );
-    } catch (err: any) {
-      throw new Error(err);
+    } catch (err) {
+      console.log('[ GET ALL ANIME USE CASE ERROR ]')
+      throw new Error(JSON.stringify(err));
     }
   }
 }
