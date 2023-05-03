@@ -22,7 +22,7 @@ import { IGetTrendingAnimeRequestParams } from "../domain/useCases/AnimeUseCases
 
 // DTO's
 
-import { AnimeDTO } from "../domain/dto/AnimeDTO";
+import { GetAllAnimesDTO } from "../domain/dto/GetAllAnimesDTO";
 import { TrendingAnimeDTO } from "../domain/dto/TrendingAnimeDTO";
 
 //
@@ -37,7 +37,7 @@ export class AnimesRepository
 
   async getAllAnimes(
     params: IGetAllAnimeRequestParams
-  ): Promise<HttpResponse<AnimeDTO>> {
+  ): Promise<HttpResponse<GetAllAnimesDTO>> {
     const response = await this.httpService.getData(
       `https://api.jikan.moe/v4/anime?page=${params.page}&limit=${params.limit}`,
       params
@@ -46,7 +46,7 @@ export class AnimesRepository
     return response;
   }
 
-  async searchForAnAnime(query: string): Promise<HttpResponse<AnimeDTO>> {
+  async searchForAnAnime(query: string): Promise<HttpResponse<GetAllAnimesDTO>> {
     const response = await this.httpService.getData(
       `https://api.jikan.moe/v4/anime?q=${query}`,
       query
