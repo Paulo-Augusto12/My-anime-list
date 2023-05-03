@@ -11,7 +11,7 @@ export class AnimesRepository implements IGetAllAnimeRepository {
     params: IGetAllAnimeRequestParams
   ): Promise<HttpResponse<AnimeDTO>> {
     const response = await this.httpService.getData(
-      "https://api.jikan.moe/v4/anime",
+      `https://api.jikan.moe/v4/anime?page=${params.page}&limit=${params.limit}`,
       params
     );
 
