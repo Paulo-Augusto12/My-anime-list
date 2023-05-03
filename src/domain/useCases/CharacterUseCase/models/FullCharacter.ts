@@ -1,3 +1,3 @@
 export class FullCharacter {
-    constructor(readonly name: string = '', readonly photo: string = ''){}
+  constructor(readonly name: string = "", readonly photo: string = "") {}
 }
