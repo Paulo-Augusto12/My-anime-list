@@ -20,5 +20,5 @@ export class GetTrendingAnimesUseCase implements IGetTrendingAnimesUseCase {
       ({ title_english, images, episodes }) =>
         new AnimeModel(title_english, images.jpg.image_url, episodes)
     );
-  } 
+  }
 }

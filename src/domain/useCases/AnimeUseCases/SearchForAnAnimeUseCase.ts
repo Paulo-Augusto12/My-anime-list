@@ -14,7 +14,7 @@ export class SearchForAnAnimeUseCase implements ISearchForAnAnimeUseCase {
           new AnimeModel(title_english, images.jpg.image_url, episodes)
       );
     } catch (err) {
-      console.log('[ USE CASE ERROR ]')
+      console.log("[ USE CASE ERROR ]");
       throw new Error(JSON.stringify(err));
     }
   }

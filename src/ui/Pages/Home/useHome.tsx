@@ -1,10 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { GetAllAnimeUseCase } from "../../../domain/useCases/AnimeUseCases/GetAllAnimesUseCase";
-import { AnimesRepository } from "../../../data/AnimesRepository";
-import { RequestService } from "../../../domain/services/requestService";
 import { AnimeModel } from "../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
+
+// Services
+
+import { RequestService } from "../../../domain/services/requestService";
+
+//
+
+// Repositories
+
+import { AnimesRepository } from "../../../data/AnimesRepository";
+
+//
+
+// Use cases
+
 import { SearchForAnAnimeUseCase } from "../../../domain/useCases/AnimeUseCases/SearchForAnAnimeUseCase";
 import { GetTrendingAnimesUseCase } from "../../../domain/useCases/AnimeUseCases/GetTrendingAnimesUseCase";
+import { GetAllAnimeUseCase } from "../../../domain/useCases/AnimeUseCases/GetAllAnimesUseCase";
+
+//
 
 // Params
 
@@ -82,7 +97,7 @@ export function useHome() {
 
       const data = await getTrendingAnimesUseCase.execute(params);
 
-      setTrendingAnimes(data)
+      setTrendingAnimes(data);
     } catch (err) {
       console.log(JSON.stringify(err));
     }
@@ -96,9 +111,9 @@ export function useHome() {
 
   useEffect(() => {
     if (!trendingAnimes.length) {
-        getTrendingAnimes();
-      }
-  },[trendingAnimes])
+      getTrendingAnimes();
+    }
+  }, [trendingAnimes]);
 
   return {
     animes,
