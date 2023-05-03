@@ -68,6 +68,7 @@ export function Header({
             onClick={() => {
               hook.setSelectedElement(element.id);
             }}
+            key={element.id}
           >
             <Typography key={element.id}>{element.label}</Typography>
           </Button>
