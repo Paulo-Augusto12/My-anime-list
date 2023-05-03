@@ -3,6 +3,7 @@
 import { IGetAllAnimeRepository } from "../domain/interfaces/AnimeRepository/IGetAllAnimeRepository";
 import { ISearchForAnAnimeRepository } from "../domain/interfaces/AnimeRepository/ISearchForAnAnimeRepository";
 import { IGetTrendingAnimesRepository } from "../domain/interfaces/AnimeRepository/IGetTrendingAnimesRepository";
+import { IGetARandomAnimeRepository } from "../domain/interfaces/AnimeRepository/IGetARandomAnimeRepository";
 
 //
 
@@ -24,6 +25,7 @@ import { IGetTrendingAnimeRequestParams } from "../domain/useCases/AnimeUseCases
 
 import { GetAllAnimesDTO } from "../domain/dto/GetAllAnimesDTO";
 import { TrendingAnimeDTO } from "../domain/dto/TrendingAnimeDTO";
+import { GetARandomAnimeDTO } from "../domain/dto/GetARandomAnimeDTO";
 
 //
 
@@ -31,7 +33,8 @@ export class AnimesRepository
   implements
     IGetAllAnimeRepository,
     ISearchForAnAnimeRepository,
-    IGetTrendingAnimesRepository
+    IGetTrendingAnimesRepository,
+    IGetARandomAnimeRepository
 {
   constructor(private httpService: IHttpService) {}
 
@@ -64,5 +67,11 @@ export class AnimesRepository
     );
 
     return response;
+  }
+
+  async getARandomAnime(): Promise<HttpResponse<GetARandomAnimeDTO>> {
+      const response = await this.httpService.getData('https://api.jikan.moe/v4/random/anime', {})
+
+      return response
   }
 }
