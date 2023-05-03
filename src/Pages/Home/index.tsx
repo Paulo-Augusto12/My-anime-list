@@ -11,7 +11,7 @@ export function Home() {
         sx={{
           display: "flex",
           flexDirection: "row",
-          gap: "3rem",
+          gap: "2rem",
           alignItems: "center",
         }}
       >
@@ -27,7 +27,7 @@ export function Home() {
         >
           <img
             src={img?.photo}
-            style={{
+            style={{ 
               objectFit: "cover",
               width: "256px",
               height: "100px",
