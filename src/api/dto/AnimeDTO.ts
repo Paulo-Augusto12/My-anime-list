@@ -1,5 +1,5 @@
 export interface AnimeDTO {
-    data: Data[]
+    animes: Data[]
   }
   
   export interface Data {
