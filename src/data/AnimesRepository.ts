@@ -1,4 +1,4 @@
-import { AnimeDTO } from "../api/dto/AnimeDTO";
+import { AnimeDTO } from "../domain/dto/AnimeDTO";
 import { IGetAllAnimeRepository } from "../domain/interfaces/AnimeRepository/IGetAllAnimeRepository";
 import { IHttpService } from "../domain/interfaces/http/IHttpService";
 import { HttpResponse } from "../domain/models/httpResponse";

@@ -1,4 +1,4 @@
-import { AnimeDTO } from "../../../api/dto/AnimeDTO";
+import { AnimeDTO } from "../../dto/AnimeDTO";
 import { IGetAllAnimeRepository } from "../../interfaces/AnimeRepository/IGetAllAnimeRepository";
 import { AnimeModel } from "./Models/AnimeModels";
 import {
