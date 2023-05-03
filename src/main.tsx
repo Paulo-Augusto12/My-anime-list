@@ -6,7 +6,6 @@ import { Box } from "@mui/material";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Header />
     <Box sx={{ padding: "1rem" }}>
       <App />
     </Box>

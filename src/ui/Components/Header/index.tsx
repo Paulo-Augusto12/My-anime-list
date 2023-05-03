@@ -20,8 +20,16 @@ import { MagnifyingGlass } from "@phosphor-icons/react";
 
 //
 
-export function Header() {
+interface IHeaderProps {
+  animeQueryValue: string;
+  setSearchBarAnimeQueryValue: (value: React.SetStateAction<string>) => void;
+}
+export function Header({
+  animeQueryValue,
+  setSearchBarAnimeQueryValue,
+}: IHeaderProps) {
   const hook = useHeader();
+
   return (
     <Box
       sx={{
@@ -77,7 +85,11 @@ export function Header() {
               </InputAdornment>
             ),
           }}
+          onChange={(e) => {
+            setSearchBarAnimeQueryValue(e.target.value);
+          }}
           label="Search a anime"
+          value={animeQueryValue}
         />
       </Box>
     </Box>

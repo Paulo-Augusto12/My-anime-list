@@ -10,6 +10,7 @@ const getAnimeUseCase = new GetAllAnimeUseCase(animeRepository);
 
 export function useHome() {
   const [animes, setAnimes] = useState<AnimeModel[]>([]);
+  const [animeQuery, setAnimeQuery] = useState("");
 
   async function getAnimes() {
     const params = {
@@ -20,17 +21,19 @@ export function useHome() {
       const data = await getAnimeUseCase.execute(params);
       setAnimes(data);
     } catch (err) {
-      console.log(
-        "[ ERROR DURING USE CASE CALL ]",
-        JSON.stringify(err)
-      );
+      console.log(JSON.stringify(err));
     }
   }
 
   useEffect(() => {
-    getAnimes();
+    if (!animes.length) {
+      getAnimes();
+    }
   }, []);
+
   return {
     animes,
+    animeQuery,
+    setAnimeQuery,
   };
 }
