@@ -3,5 +3,7 @@ import { HttpResponse } from "../../models/httpResponse";
 import { IGetTrendingAnimeRequestParams } from "../../useCases/AnimeUseCases/abstractions/IGetTrendingAnimesUseCase";
 
 export interface IGetTrendingAnimesRepository {
-    getTrendingAnimes(params: IGetTrendingAnimeRequestParams): Promise <HttpResponse<TrendingAnimeDTO>>
+  getTrendingAnimes(
+    params: IGetTrendingAnimeRequestParams
+  ): Promise<HttpResponse<TrendingAnimeDTO>>;
 }

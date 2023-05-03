@@ -49,7 +49,9 @@ export class AnimesRepository
     return response;
   }
 
-  async searchForAnAnime(query: string): Promise<HttpResponse<GetAllAnimesDTO>> {
+  async searchForAnAnime(
+    query: string
+  ): Promise<HttpResponse<GetAllAnimesDTO>> {
     const response = await this.httpService.getData(
       `https://api.jikan.moe/v4/anime?q=${query}`,
       query
@@ -70,8 +72,11 @@ export class AnimesRepository
   }
 
   async getARandomAnime(): Promise<HttpResponse<GetARandomAnimeDTO>> {
-      const response = await this.httpService.getData('https://api.jikan.moe/v4/random/anime', {})
+    const response = await this.httpService.getData(
+      "https://api.jikan.moe/v4/random/anime",
+      {}
+    );
 
-      return response
+    return response;
   }
 }
