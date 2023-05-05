@@ -1,8 +1,27 @@
+// DTO's
+
 import { GetAllAnimesDTO } from "../src/domain/dto/GetAllAnimesDTO";
+
+//
+
+// Repositories interfaces
+
 import { IGetAllAnimeRepository } from "../src/domain/interfaces/AnimeRepository/IGetAllAnimeRepository";
+
+//
+
+// Http
+
 import { IHttpService } from "../src/domain/interfaces/http/IHttpService";
 import { HttpResponse } from "../src/domain/models/httpResponse";
+
+//
+
+// Request Params
+
 import { IGetAllAnimeRequestParams } from "../src/domain/useCases/AnimeUseCases/abstractions/IGetAllAnimeUseCase";
+
+//
 
 export class FakeAnimeRepository implements IGetAllAnimeRepository {
   constructor(private httpService: IHttpService) {}
