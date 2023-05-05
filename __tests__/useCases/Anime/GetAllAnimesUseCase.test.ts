@@ -38,7 +38,6 @@ test("Anime should have an name", async () => {
 
   const animeNames = data.map(({ name }) => name);
   animeNames.forEach((name) => {
-    console.log(`Nome: ${name}, Tipo: ${typeof name}`);
     expect(name).toHaveLength;
     expect(name).toBeTypeOf("string")
   });
