@@ -1,4 +1,4 @@
-import { expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 import { GetAllAnimeUseCase } from "../../../src/domain/useCases/AnimeUseCases/GetAllAnimesUseCase";
 import { FakeAnimeRepository } from "../../Repository/fakeAnimeRepository";
 import { RequestService } from "../../../src/domain/services/requestService";
@@ -28,25 +28,18 @@ const params = { page: 0, limit: 0 };
 
 //
 
-async function getAnimesUseCase(): Promise<AnimeModel[]> {
-  return await useCase.execute(params);
-}
-
-async function getAnimesNames(): Promise<string[]> {
-  const data = await useCase.execute(params);
-  const names = data.map(({ name }) => name);
-  return names;
-}
-
-test("Should return an array of the anime Model", async () => {
-  const animes = await getAnimesUseCase();
-  expect(animes).toMatchObject(animes);
+test("Should return an array of the anime model", async () => {
+  const animes = await useCase.execute(params);
+  expectTypeOf(animes).toEqualTypeOf([new AnimeModel()]);
 });
 
-test("Anime name should be an string", async () => {
-  const names = await getAnimesNames();
+test("Anime should have an name", async () => {
+  const data = await useCase.execute(params);
 
-  names.forEach((name) => {
-    expect(typeof name).toBeTypeOf("string");
+  const animeNames = data.map(({ name }) => name);
+  animeNames.forEach((name) => {
+    console.log(`Nome: ${name}, Tipo: ${typeof name}`);
+    expect(name).toHaveLength;
+    expect(name).toBeTypeOf("string")
   });
 });

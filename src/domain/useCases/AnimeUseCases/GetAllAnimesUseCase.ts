@@ -15,7 +15,7 @@ export class GetAllAnimeUseCase implements IGetAllAnimeUseCase {
       return response.data.data.map(
         (anime) =>
           new AnimeModel(
-            anime.title_english,
+            anime.title,
             anime.images.jpg.image_url,
             anime.episodes
           )
