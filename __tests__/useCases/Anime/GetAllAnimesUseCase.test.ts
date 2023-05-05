@@ -1,8 +1,8 @@
 import { expect, test } from "vitest";
-import { GetAllAnimeUseCase } from "../src/domain/useCases/AnimeUseCases/GetAllAnimesUseCase";
-import { FakeAnimeRepository } from "./fakeAnimeRepository";
-import { RequestService } from "../src/domain/services/requestService";
-import { AnimeModel } from "../src/domain/useCases/AnimeUseCases/Models/AnimeModels";
+import { GetAllAnimeUseCase } from "../../../src/domain/useCases/AnimeUseCases/GetAllAnimesUseCase";
+import { FakeAnimeRepository } from "../../Repository/fakeAnimeRepository";
+import { RequestService } from "../../../src/domain/services/requestService";
+import { AnimeModel } from "../../../src/domain/useCases/AnimeUseCases/Models/AnimeModels";
 
 //http service
 
@@ -43,7 +43,7 @@ test("Should return an array of the anime Model", async () => {
   expect(animes).toMatchObject(animes);
 });
 
-test("Anime name should be an string or null", async () => {
+test("Anime name should be an string", async () => {
   const names = await getAnimesNames();
 
   names.forEach((name) => {
