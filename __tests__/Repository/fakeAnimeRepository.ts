@@ -1,25 +1,25 @@
 // DTO's
 
-import { GetAllAnimesDTO } from "../src/domain/dto/GetAllAnimesDTO";
+import { GetAllAnimesDTO } from "../../src/domain/dto/GetAllAnimesDTO";
 
 //
 
 // Repositories interfaces
 
-import { IGetAllAnimeRepository } from "../src/domain/interfaces/AnimeRepository/IGetAllAnimeRepository";
+import { IGetAllAnimeRepository } from "../../src/domain/interfaces/AnimeRepository/IGetAllAnimeRepository";
 
 //
 
 // Http
 
-import { IHttpService } from "../src/domain/interfaces/http/IHttpService";
-import { HttpResponse } from "../src/domain/models/httpResponse";
+import { IHttpService } from "../../src/domain/interfaces/http/IHttpService";
+import { HttpResponse } from "../../src/domain/models/httpResponse";
 
 //
 
 // Request Params
 
-import { IGetAllAnimeRequestParams } from "../src/domain/useCases/AnimeUseCases/abstractions/IGetAllAnimeUseCase";
+import { IGetAllAnimeRequestParams } from "../../src/domain/useCases/AnimeUseCases/abstractions/IGetAllAnimeUseCase";
 
 //
 
