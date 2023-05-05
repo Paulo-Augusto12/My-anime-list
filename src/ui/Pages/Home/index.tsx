@@ -55,12 +55,15 @@ export function Home() {
         }}
       >
         <Typography color="black">Trending</Typography>
-        <Box sx={{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
-          
-        {hook.trendingAnimes.map(({episodes, name, photo}) => (
-          <Card animeName={name} animeEpisodesQtde={episodes} animePhoto={photo}/>
-        ))}
-          </Box>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+          {hook.trendingAnimes.map(({ episodes, name, photo }) => (
+            <Card
+              animeName={name}
+              animeEpisodesQtde={episodes}
+              animePhoto={photo}
+            />
+          ))}
+        </Box>
       </Box>
     </Box>
   );
