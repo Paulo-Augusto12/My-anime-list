@@ -1,6 +1,6 @@
 import React from "react";
 import { useHome } from "./useHome";
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { Header } from "../../Components/Header";
 import { Card } from "../../Components/Card";
 
@@ -30,20 +30,25 @@ export function Home() {
         </Typography>
         <Box
           sx={{
-            width: "256px",
             height: "100px",
             borderRadius: "33px",
           }}
         >
-          <img
-            src={hook.randomCharacterPhoto}
-            style={{
-              objectFit: "fill",
-              width: "256px",
-              height: "100px",
-              borderRadius: "33px",
-            }}
-          />
+          {!hook.randomCharacterPhoto.trim() ? (
+            <Skeleton
+              sx={{ borderRadius: "33px", width: "156px", height: "100px" }}
+            />
+          ) : (
+            <img
+              src={hook.randomCharacterPhoto}
+              style={{
+                objectFit: "fill",
+                width: "156px",
+                height: "100px",
+                borderRadius: "33px",
+              }}
+            />
+          )}
         </Box>
       </Box>
       <Box
@@ -55,13 +60,27 @@ export function Home() {
         }}
       >
         <Typography color="black">Trending</Typography>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "1rem",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+          }}
+        >
           {hook.trendingAnimes.map(({ episodes, name, photo }) => (
-            <Card
-              animeName={name}
-              animeEpisodesQtde={episodes}
-              animePhoto={photo}
-            />
+            <Box maxWidth={"245px"}>
+              {!photo.trim() ? (
+                <Skeleton />
+              ) : (
+                <Card
+                  animeName={name}
+                  animeEpisodesQtde={episodes}
+                  animePhoto={photo}
+                />
+              )}
+            </Box>
           ))}
         </Box>
       </Box>
