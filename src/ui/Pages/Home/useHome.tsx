@@ -81,7 +81,10 @@ export function useHome() {
   const [loadingTrendingAnimes, setLoadingTrendingAnimes] = useState(false);
   const [loadingAnimes, setLoadingAnimes] = useState(false);
   const [page, setPage] = useState(1);
-  const [totalOfPages, setTotalOfPages] = useState(0);
+  const [paginationData, setpaginationData] = useState({
+    page: 0,
+    totalOfPages: 0,
+  });
 
   async function getAnimes() {
     setLoadingAnimes(true);
@@ -92,7 +95,10 @@ export function useHome() {
     try {
       const data = await getAnimeUseCase.execute(params);
       setAnimes(data.animes);
-      setTotalOfPages(data.paginationInfo.lastPage);
+      setpaginationData({
+        page: page,
+        totalOfPages: data.paginationInfo.lastPage,
+      });
       setLoadingAnimes(false);
     } catch (err) {
       setLoadingAnimes(false);
@@ -163,8 +169,7 @@ export function useHome() {
     loadingTrendingAnimes,
     page,
     setPage,
-    totalOfPages,
-    setTotalOfPages,
+    paginationData,
     loadingAnimes,
   };
 }

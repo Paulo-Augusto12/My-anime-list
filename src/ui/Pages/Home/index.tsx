@@ -11,7 +11,6 @@ import {
 import { Header } from "../../Components/Header";
 import { Card } from "../../Components/Card";
 import { ArrowRight } from "@phosphor-icons/react";
-import { Link, Navigate } from "react-router-dom";
 
 export function Home() {
   const hook = useHome();
@@ -174,7 +173,7 @@ export function Home() {
       >
         <a href="#top" style={{ textDecoration: "none" }}>
           <Pagination
-            count={hook.totalOfPages}
+            count={hook.paginationData.totalOfPages}
             page={hook.page}
             onChange={(e, page) => {
               hook.setPage(page);
