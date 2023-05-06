@@ -60,10 +60,10 @@ export function Home() {
           marginTop: "2rem",
           display: "flex",
           flexDirection: "column",
-          gap: "2rem",
+          gap: "1rem",
         }}
       >
-        <Typography color="black">Trending</Typography>
+        <Typography color="black" fontWeight={700}>Trending</Typography>
         <Box
           sx={{
             display: "flex",
