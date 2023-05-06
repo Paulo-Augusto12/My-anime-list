@@ -11,7 +11,7 @@ import {
 import { Header } from "../../Components/Header";
 import { Card } from "../../Components/Card";
 import { ArrowRight } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export function Home() {
   const hook = useHome();
@@ -104,6 +104,7 @@ export function Home() {
               justifyContent: "center",
               marginTop: "2rem",
             }}
+            id="top"
           >
             <a href="#animes" style={{ textDecoration: "none", width: "15%" }}>
               <Button
@@ -124,7 +125,6 @@ export function Home() {
                     color: "#ffff",
                   },
                 }}
-                onClick={() => {}}
               >
                 View All Anime
                 <ArrowRight size={"16px"} />
@@ -133,25 +133,34 @@ export function Home() {
           </Box>
         </Box>
       )}
-      <Grid
-        container
-        spacing={4}
-        rowSpacing={8}
-        columnSpacing={20}
-        columns={32}
-        id="animes"
-        sx={{ scrollBehavior: "smooth" }}
-      >
-        {hook.animes.map(({ name, episodes, photo, descrition }, index) => (
-          <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
-            <Card
-              animeName={name}
-              animeEpisodesQtde={episodes}
-              animePhoto={photo}
-            />
-          </Grid>
-        ))}
-      </Grid>
+
+      {hook.loadingAnimes ? (
+        <Skeleton
+          height={"1607px"}
+          variant="rectangular"
+          sx={{ borderRadius: "18px" }}
+        />
+      ) : (
+        <Grid
+          container
+          spacing={4}
+          rowSpacing={8}
+          columnSpacing={20}
+          columns={32}
+          id="animes"
+          sx={{ scrollBehavior: "smooth", marginTop: "18px" }}
+        >
+          {hook.animes.map(({ name, episodes, photo, descrition }, index) => (
+            <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
+              <Card
+                animeName={name}
+                animeEpisodesQtde={episodes}
+                animePhoto={photo}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
       <Box
         sx={{
           display: "flex",
@@ -160,13 +169,15 @@ export function Home() {
           marginTop: "2rem",
         }}
       >
-        <Pagination
-          count={hook.totalOfPages}
-          page={hook.page}
-          onChange={(e, page) => {
-            hook.setPage(page);
-          }}
-        />
+        <a href="#top" style={{ textDecoration: "none" }}>
+          <Pagination
+            count={hook.totalOfPages}
+            page={hook.page}
+            onChange={(e, page) => {
+              hook.setPage(page);
+            }}
+          />
+        </a>
       </Box>
     </Box>
   );
