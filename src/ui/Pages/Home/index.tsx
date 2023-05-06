@@ -51,6 +51,10 @@ export function Home() {
           )}
         </Box>
       </Box>
+      {hook.loadingTrendingAnimes ? (
+        <Skeleton sx={{height: '404px', borderRadius: '16px'}}/>
+      ): (
+
       <Box
         sx={{
           marginTop: "2rem",
@@ -84,6 +88,7 @@ export function Home() {
           ))}
         </Box>
       </Box>
+      )}
     </Box>
   );
 }
