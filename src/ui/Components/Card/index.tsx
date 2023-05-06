@@ -28,23 +28,35 @@ export function Card({ animeName, animeEpisodesQtde, animePhoto }: ICardProps) {
         maxWidth: "255px",
       }}
     >
-      <Box
-        sx={{
-          height: "300px",
-          width: "225px",
-          borderRadius: "2rem",
+      <button
+        style={{
+          border: "none",
+          outline: "none",
+          cursor: "pointer",
+          background: "none",
         }}
       >
-        <img
-          src={animePhoto}
-          style={{
-            objectFit: "cover",
+        <Box
+          sx={{
             height: "300px",
             width: "225px",
             borderRadius: "2rem",
+            "&:hover": {
+              opacity: "75%",
+            },
           }}
-        />
-      </Box>
+        >
+          <img
+            src={animePhoto}
+            style={{
+              objectFit: "cover",
+              height: "300px",
+              width: "225px",
+              borderRadius: "2rem",
+            }}
+          />
+        </Box>
+      </button>
       <Typography
         color="black"
         sx={{ fontSize: "1.25rem", fontWeight: "bold" }}
