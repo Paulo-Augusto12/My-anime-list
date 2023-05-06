@@ -77,7 +77,7 @@ export function Home() {
             gap: "1rem",
           }}
         >
-          <Typography color="black" fontWeight={700}>
+          <Typography variant="h5" fontWeight={700}>
             Trending
           </Typography>
           <Box
@@ -159,7 +159,7 @@ export function Home() {
             marginTop: "18px",
           }}
         >
-          <Typography variant="h4" fontWeight={700}>
+          <Typography variant="h5" fontWeight={700}>
             Animes
           </Typography>
           <Grid
