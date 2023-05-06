@@ -125,6 +125,9 @@ export function Home() {
                     color: "#ffff",
                   },
                 }}
+                onClick={() => {
+                  hook.setPage(1);
+                }}
               >
                 View All Anime
                 <ArrowRight size={"16px"} />
