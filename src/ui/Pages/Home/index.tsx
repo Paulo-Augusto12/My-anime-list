@@ -32,7 +32,7 @@ export function Home() {
         <Box
           sx={{
             height: "100px",
-            borderRadius: "33px",
+            borderRadius: "55px",
           }}
         >
           {!hook.randomCharacterPhoto.trim() ? (
@@ -46,7 +46,7 @@ export function Home() {
                 objectFit: "fill",
                 width: "156px",
                 height: "100px",
-                borderRadius: "33px",
+                borderRadius: "px",
               }}
             />
           )}
@@ -106,10 +106,18 @@ export function Home() {
                 width: "15%",
                 display: "flex",
                 justifyContent: "space-between",
+                borderRadius: "55px",
+                textTransform: "none",
+                fontWeight: "700",
+                fontSize: "16px",
+                "&:hover": {
+                  backgroundColor: "#4361ee",
+                  color: "#ffff",
+                },
               }}
             >
               View All Anime
-              <ArrowRight size={16} />
+              <ArrowRight size={"16px"} />
             </Button>
           </Box>
         </Box>
