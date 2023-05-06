@@ -143,25 +143,37 @@ export function Home() {
           sx={{ borderRadius: "18px" }}
         />
       ) : (
-        <Grid
-          container
-          spacing={4}
-          rowSpacing={8}
-          columnSpacing={20}
-          columns={32}
-          id="animes"
-          sx={{ scrollBehavior: "smooth", marginTop: "18px" }}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            marginTop: "18px",
+          }}
         >
-          {hook.animes.map(({ name, episodes, photo, descrition }, index) => (
-            <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
-              <Card
-                animeName={name}
-                animeEpisodesQtde={episodes}
-                animePhoto={photo}
-              />
-            </Grid>
-          ))}
-        </Grid>
+          <Typography variant="h4" fontWeight={700}>
+            Animes
+          </Typography>
+          <Grid
+            container
+            spacing={4}
+            rowSpacing={8}
+            columnSpacing={20}
+            columns={32}
+            id="animes"
+            sx={{ scrollBehavior: "smooth", marginTop: "18px" }}
+          >
+            {hook.animes.map(({ name, episodes, photo, descrition }, index) => (
+              <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
+                <Card
+                  animeName={name}
+                  animeEpisodesQtde={episodes}
+                  animePhoto={photo}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       )}
       <Box
         sx={{
