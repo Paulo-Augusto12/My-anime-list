@@ -20,12 +20,18 @@ interface ICardProps {
 
 export function Card({ animeName, animeEpisodesQtde, animePhoto }: ICardProps) {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        maxWidth: "255px",
+      }}
+    >
       <Box
         sx={{
           height: "300px",
           width: "225px",
-          backgroundColor: "black",
           borderRadius: "2rem",
         }}
       >

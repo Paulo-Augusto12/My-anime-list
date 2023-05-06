@@ -83,7 +83,7 @@ export function useHome() {
   async function getAnimes() {
     const params = {
       page: 1,
-      limit: 10,
+      limit: 24,
     };
     try {
       const data = await getAnimeUseCase.execute(params);

@@ -1,9 +1,17 @@
 import React from "react";
 import { useHome } from "./useHome";
-import { Box, Button, Skeleton, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Pagination,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import { Header } from "../../Components/Header";
 import { Card } from "../../Components/Card";
 import { ArrowRight } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 export function Home() {
   const hook = useHome();
@@ -46,7 +54,7 @@ export function Home() {
                 objectFit: "fill",
                 width: "156px",
                 height: "100px",
-                borderRadius: "px",
+                borderRadius: "55px",
               }}
             />
           )}
@@ -97,31 +105,62 @@ export function Home() {
               marginTop: "2rem",
             }}
           >
-            <Button
-              sx={{
-                height: "25px",
-                backgroundColor: "#d7d7d7",
-                padding: "1.8rem",
-                color: "black",
-                width: "15%",
-                display: "flex",
-                justifyContent: "space-between",
-                borderRadius: "55px",
-                textTransform: "none",
-                fontWeight: "700",
-                fontSize: "16px",
-                "&:hover": {
-                  backgroundColor: "#4361ee",
-                  color: "#ffff",
-                },
-              }}
-            >
-              View All Anime
-              <ArrowRight size={"16px"} />
-            </Button>
+            <a href="#animes" style={{ textDecoration: "none", width: "15%" }}>
+              <Button
+                sx={{
+                  height: "25px",
+                  backgroundColor: "#d7d7d7",
+                  padding: "1.8rem",
+                  color: "black",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  borderRadius: "55px",
+                  textTransform: "none",
+                  fontWeight: "700",
+                  fontSize: "16px",
+                  "&:hover": {
+                    backgroundColor: "#4361ee",
+                    color: "#ffff",
+                  },
+                }}
+                onClick={() => {}}
+              >
+                View All Anime
+                <ArrowRight size={"16px"} />
+              </Button>
+            </a>
           </Box>
         </Box>
       )}
+      <Grid
+        container
+        spacing={4}
+        rowSpacing={8}
+        columnSpacing={20}
+        columns={32}
+        id="animes"
+        sx={{ scrollBehavior: "smooth" }}
+      >
+        {hook.animes.map(({ name, episodes, photo, descrition }, index) => (
+          <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
+            <Card
+              animeName={name}
+              animeEpisodesQtde={episodes}
+              animePhoto={photo}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Pagination />
+      </Box>
     </Box>
   );
 }
