@@ -78,15 +78,19 @@ export function useHome() {
   const [trendingAnimes, setTrendingAnimes] = useState<AnimeModel[]>([]);
   const [animeQuery, setAnimeQuery] = useState("");
   const [randomCharacterPhoto, setRandomCharacterPhoto] = useState("");
+  const [loadingTrendingAnimes, setLoadingTrendingAnimes] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalOfPages, setTotalOfPages] = useState(0);
 
   async function getAnimes() {
     const params = {
-      page: 1,
-      limit: 10,
+      page: page,
+      limit: 24,
     };
     try {
       const data = await getAnimeUseCase.execute(params);
-      setAnimes(data);
+      setAnimes(data.animes);
+      setTotalOfPages(data.paginationInfo.lastPage);
     } catch (err) {
       console.log(JSON.stringify(err));
     }
@@ -104,6 +108,7 @@ export function useHome() {
   }
 
   async function getTrendingAnimes() {
+    setLoadingTrendingAnimes(true);
     try {
       const params: IGetTrendingAnimeRequestParams = {
         page: 1,
@@ -115,7 +120,9 @@ export function useHome() {
       const data = await getTrendingAnimesUseCase.execute(params);
 
       setTrendingAnimes(data);
+      setLoadingTrendingAnimes(false);
     } catch (err) {
+      setLoadingTrendingAnimes(false);
       console.log(JSON.stringify(err));
     }
   }
@@ -127,10 +134,8 @@ export function useHome() {
   }
 
   useEffect(() => {
-    if (!animes.length) {
-      getAnimes();
-    }
-  }, []);
+    getAnimes();
+  }, [page]);
 
   useEffect(() => {
     if (!trendingAnimes.length) {
@@ -151,5 +156,10 @@ export function useHome() {
     searchAnime,
     randomCharacterPhoto,
     trendingAnimes,
+    loadingTrendingAnimes,
+    page,
+    setPage,
+    totalOfPages,
+    setTotalOfPages,
   };
 }

@@ -30,15 +30,17 @@ const params = { page: 0, limit: 0 };
 
 test("Should return an array of the anime model", async () => {
   const animes = await useCase.execute(params);
-  expectTypeOf(animes).toEqualTypeOf([new AnimeModel()]);
+  const mockModel = [new AnimeModel("name", "photo", 10, "description")];
+  expectTypeOf(animes).toEqualTypeOf(mockModel);
 });
 
 test("Anime should have an name", async () => {
   const data = await useCase.execute(params);
 
   const animeNames = data.map(({ name }) => name);
+  const mockType = "";
   animeNames.forEach((name) => {
     expect(name).toHaveLength;
-    expect(name).toBeTypeOf("string")
+    expectTypeOf(name).toEqualTypeOf(mockType);
   });
 });

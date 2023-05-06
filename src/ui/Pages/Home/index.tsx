@@ -1,13 +1,22 @@
 import React from "react";
 import { useHome } from "./useHome";
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Pagination,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import { Header } from "../../Components/Header";
 import { Card } from "../../Components/Card";
+import { ArrowRight } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 export function Home() {
   const hook = useHome();
   return (
-    <Box>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
       <Header
         animeQueryValue={hook.animeQuery}
         setSearchBarAnimeQueryValue={(e) => {
@@ -30,40 +39,134 @@ export function Home() {
         </Typography>
         <Box
           sx={{
-            width: "256px",
             height: "100px",
-            borderRadius: "33px",
+            borderRadius: "55px",
           }}
         >
-          <img
-            src={hook.randomCharacterPhoto}
-            style={{
-              objectFit: "fill",
-              width: "256px",
-              height: "100px",
-              borderRadius: "33px",
-            }}
-          />
+          {!hook.randomCharacterPhoto.trim() ? (
+            <Skeleton
+              sx={{ borderRadius: "33px", width: "156px", height: "100px" }}
+            />
+          ) : (
+            <img
+              src={hook.randomCharacterPhoto}
+              style={{
+                objectFit: "fill",
+                width: "156px",
+                height: "100px",
+                borderRadius: "55px",
+              }}
+            />
+          )}
         </Box>
       </Box>
-      <Box
-        sx={{
-          marginTop: "2rem",
-          display: "flex",
-          flexDirection: "column",
-          gap: "2rem",
-        }}
+      {hook.loadingTrendingAnimes ? (
+        <Skeleton sx={{ height: "404px", borderRadius: "16px" }} />
+      ) : (
+        <Box
+          sx={{
+            marginTop: "2rem",
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+          }}
+        >
+          <Typography color="black" fontWeight={700}>
+            Trending
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "1rem",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+            }}
+          >
+            {hook.trendingAnimes.map(({ episodes, name, photo }) => (
+              <Box maxWidth={"245px"}>
+                {!photo.trim() ? (
+                  <Skeleton />
+                ) : (
+                  <Card
+                    animeName={name}
+                    animeEpisodesQtde={episodes}
+                    animePhoto={photo}
+                  />
+                )}
+              </Box>
+            ))}
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: "2rem",
+            }}
+          >
+            <a href="#animes" style={{ textDecoration: "none", width: "15%" }}>
+              <Button
+                sx={{
+                  height: "25px",
+                  backgroundColor: "#d7d7d7",
+                  padding: "1.8rem",
+                  color: "black",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  borderRadius: "55px",
+                  textTransform: "none",
+                  fontWeight: "700",
+                  fontSize: "16px",
+                  "&:hover": {
+                    backgroundColor: "#4361ee",
+                    color: "#ffff",
+                  },
+                }}
+                onClick={() => {}}
+              >
+                View All Anime
+                <ArrowRight size={"16px"} />
+              </Button>
+            </a>
+          </Box>
+        </Box>
+      )}
+      <Grid
+        container
+        spacing={4}
+        rowSpacing={8}
+        columnSpacing={20}
+        columns={32}
+        id="animes"
+        sx={{ scrollBehavior: "smooth" }}
       >
-        <Typography color="black">Trending</Typography>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
-          {hook.trendingAnimes.map(({ episodes, name, photo }) => (
+        {hook.animes.map(({ name, episodes, photo, descrition }, index) => (
+          <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
             <Card
               animeName={name}
               animeEpisodesQtde={episodes}
               animePhoto={photo}
             />
-          ))}
-        </Box>
+          </Grid>
+        ))}
+      </Grid>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "2rem",
+        }}
+      >
+        <Pagination
+          count={hook.totalOfPages}
+          page={hook.page}
+          onChange={(e, page) => {
+            hook.setPage(page);
+          }}
+        />
       </Box>
     </Box>
   );
