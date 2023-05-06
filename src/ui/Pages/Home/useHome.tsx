@@ -78,7 +78,7 @@ export function useHome() {
   const [trendingAnimes, setTrendingAnimes] = useState<AnimeModel[]>([]);
   const [animeQuery, setAnimeQuery] = useState("");
   const [randomCharacterPhoto, setRandomCharacterPhoto] = useState("");
-  const [loadingTrendingAnimes, setLoadingTrendingAnimes] = useState(false)
+  const [loadingTrendingAnimes, setLoadingTrendingAnimes] = useState(false);
 
   async function getAnimes() {
     const params = {
@@ -105,7 +105,7 @@ export function useHome() {
   }
 
   async function getTrendingAnimes() {
-    setLoadingTrendingAnimes(true)
+    setLoadingTrendingAnimes(true);
     try {
       const params: IGetTrendingAnimeRequestParams = {
         page: 1,
@@ -117,9 +117,9 @@ export function useHome() {
       const data = await getTrendingAnimesUseCase.execute(params);
 
       setTrendingAnimes(data);
-      setLoadingTrendingAnimes(false)
+      setLoadingTrendingAnimes(false);
     } catch (err) {
-      setLoadingTrendingAnimes(false)
+      setLoadingTrendingAnimes(false);
       console.log(JSON.stringify(err));
     }
   }
@@ -155,6 +155,6 @@ export function useHome() {
     searchAnime,
     randomCharacterPhoto,
     trendingAnimes,
-    loadingTrendingAnimes
+    loadingTrendingAnimes,
   };
 }
