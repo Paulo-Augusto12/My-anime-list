@@ -176,6 +176,7 @@ export function Home() {
             onChange={(e, page) => {
               hook.setPage(page);
             }}
+            color="primary"
           />
         </a>
       </Box>
