@@ -17,7 +17,8 @@ export class GetAllAnimeUseCase implements IGetAllAnimeUseCase {
           new AnimeModel(
             anime.title,
             anime.images.jpg.image_url,
-            anime.episodes
+            anime.episodes,
+            anime.synopsis
           )
       );
     } catch (err) {
