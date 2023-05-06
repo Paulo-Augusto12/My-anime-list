@@ -25,11 +25,13 @@ interface IHeaderProps {
   animeQueryValue: string;
   setSearchBarAnimeQueryValue: (value: React.SetStateAction<string>) => void;
   handleSubmit: () => void;
+  scrollTo: string;
 }
 export function Header({
   animeQueryValue,
   setSearchBarAnimeQueryValue,
   handleSubmit,
+  scrollTo,
 }: IHeaderProps) {
   const hook = useHeader();
 
@@ -82,13 +84,15 @@ export function Header({
             style: { borderRadius: "50px" },
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton
-                  onClick={() => {
-                    handleSubmit();
-                  }}
-                >
-                  <MagnifyingGlass size={32} color="#495057" />
-                </IconButton>
+                <a href={scrollTo}>
+                  <IconButton
+                    onClick={() => {
+                      handleSubmit();
+                    }}
+                  >
+                    <MagnifyingGlass size={32} color="#495057" />
+                  </IconButton>
+                </a>
               </InputAdornment>
             ),
           }}

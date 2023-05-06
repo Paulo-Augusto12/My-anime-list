@@ -15,7 +15,13 @@ import { ArrowRight } from "@phosphor-icons/react";
 export function Home() {
   const hook = useHome();
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1.5rem",
+      }}
+    >
       <Header
         animeQueryValue={hook.animeQuery}
         setSearchBarAnimeQueryValue={(e) => {
@@ -24,6 +30,7 @@ export function Home() {
         handleSubmit={() => {
           hook.searchAnime();
         }}
+        scrollTo="#animes"
       />
       <Box
         sx={{
