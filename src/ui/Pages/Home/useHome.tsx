@@ -107,12 +107,15 @@ export function useHome() {
   }
 
   async function searchAnime() {
+    setLoadingAnimes(true);
     try {
       const data = await searchForAnAnimeUseCase.execute(animeQuery);
 
       setAnimes(data);
       setAnimeQuery("");
+      setLoadingAnimes(false);
     } catch (err) {
+      setLoadingAnimes(false);
       console.log(JSON.stringify(err));
     }
   }

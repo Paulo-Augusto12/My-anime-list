@@ -148,6 +148,7 @@ export function Home() {
           height={"1607px"}
           variant="rectangular"
           sx={{ borderRadius: "18px" }}
+          id="animes"
         />
       ) : (
         <Box
