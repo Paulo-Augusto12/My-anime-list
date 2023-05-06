@@ -160,7 +160,13 @@ export function Home() {
           marginTop: "2rem",
         }}
       >
-        <Pagination />
+        <Pagination
+          count={hook.totalOfPages}
+          page={hook.page}
+          onChange={(e, page) => {
+            hook.setPage(page);
+          }}
+        />
       </Box>
     </Box>
   );
