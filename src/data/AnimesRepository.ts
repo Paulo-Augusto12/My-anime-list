@@ -18,6 +18,7 @@ import { IHttpService } from "../domain/interfaces/http/IHttpService";
 
 import { IGetAllAnimeRequestParams } from "../domain/useCases/AnimeUseCases/abstractions/IGetAllAnimeUseCase";
 import { IGetTrendingAnimeRequestParams } from "../domain/useCases/AnimeUseCases/abstractions/IGetTrendingAnimesUseCase";
+import { ISearchForAnAnimeRequestParams } from "../domain/useCases/AnimeUseCases/abstractions/ISearchForAnAnimeUseCase";
 
 //
 
@@ -50,10 +51,10 @@ export class AnimesRepository
   }
 
   async searchForAnAnime(
-    query: string
+    { limit, page, query }: ISearchForAnAnimeRequestParams
   ): Promise<HttpResponse<GetAllAnimesDTO>> {
     const response = await this.httpService.getData(
-      `https://api.jikan.moe/v4/anime?q=${query}`,
+      `https://api.jikan.moe/v4/anime?q=${query}&page=${page}&limit=${limit}`,
       query
     );
 
