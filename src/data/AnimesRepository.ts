@@ -50,9 +50,11 @@ export class AnimesRepository
     return response;
   }
 
-  async searchForAnAnime(
-    { limit, page, query }: ISearchForAnAnimeRequestParams
-  ): Promise<HttpResponse<GetAllAnimesDTO>> {
+  async searchForAnAnime({
+    limit,
+    page,
+    query,
+  }: ISearchForAnAnimeRequestParams): Promise<HttpResponse<GetAllAnimesDTO>> {
     const response = await this.httpService.getData(
       `https://api.jikan.moe/v4/anime?q=${query}&page=${page}&limit=${limit}`,
       query
