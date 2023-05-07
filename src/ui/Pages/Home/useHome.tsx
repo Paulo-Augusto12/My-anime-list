@@ -83,6 +83,8 @@ export function useHome() {
   const [loadingAnimes, setLoadingAnimes] = useState(false);
   const [page, setPage] = useState(1);
   const [paginationData, setpaginationData] = useState<Pagination>();
+  const [animeSearchPaginationData, setAnimeSearchPaginationData] =
+    useState<Pagination>();
 
   async function getAnimes() {
     setLoadingAnimes(true);
@@ -95,6 +97,7 @@ export function useHome() {
       setAnimes(data.animes);
       setpaginationData(data.paginationInfo);
       setLoadingAnimes(false);
+      setAnimeSearchPaginationData(undefined);
     } catch (err) {
       setLoadingAnimes(false);
       console.log(JSON.stringify(err));
@@ -112,9 +115,9 @@ export function useHome() {
       const data = await searchForAnAnimeUseCase.execute(params);
 
       setAnimes(data.animes);
-      setAnimeQuery("");
       setLoadingAnimes(false);
-      setpaginationData(data.paginationInfo);
+      setAnimeSearchPaginationData(data.paginationInfo);
+      setpaginationData(undefined);
     } catch (err) {
       setLoadingAnimes(false);
       console.log(JSON.stringify(err));
@@ -148,7 +151,7 @@ export function useHome() {
   }
 
   useEffect(() => {
-    getAnimes();
+    paginationData ? getAnimes() : searchAnime();
   }, [page]);
 
   useEffect(() => {
@@ -175,5 +178,7 @@ export function useHome() {
     setPage,
     paginationData,
     loadingAnimes,
+    getAnimes,
+    animeSearchPaginationData,
   };
 }

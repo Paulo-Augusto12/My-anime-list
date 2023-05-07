@@ -132,7 +132,7 @@ export function Home() {
                   },
                 }}
                 onClick={() => {
-                  hook.setPage(1);
+                  hook.getAnimes();
                 }}
               >
                 View All Anime
@@ -193,11 +193,13 @@ export function Home() {
       >
         <a href="#top" style={{ textDecoration: "none" }}>
           <Pagination
-            count={hook.paginationData?.lastPage as number}
+            count={
+              hook.paginationData
+                ? (hook.paginationData.lastPage as number)
+                : (hook.animeSearchPaginationData?.lastPage as number)
+            }
             page={hook.page}
-            onChange={(e, page) => {
-              hook.setPage(page);
-            }}
+            onChange={(e, page) => hook.setPage(page)}
             color="primary"
           />
         </a>
