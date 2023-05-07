@@ -1,12 +1,16 @@
 export class Pagination {
   constructor(
-    readonly lastPage: number,
-    readonly hasNextPage: boolean,
-    readonly currentPage: number,
+    readonly currentPage: number = 0,
+    readonly lastPage: number = 0,
+    readonly hasNextPage: boolean = false,
     readonly items: {
-      readonly count: number;
-      readonly total: number;
-      readonly perPage: number;
+      count: number;
+      total: number;
+      perPage: number;
+    } = {
+      count: 0,
+      total: 0,
+      perPage: 0,
     }
   ) {}
 }
