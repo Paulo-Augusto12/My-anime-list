@@ -1,6 +1,7 @@
 import { GetAllAnimesDTO } from "../../dto/GetAllAnimesDTO";
 import { HttpResponse } from "../../models/httpResponse";
+import { ISearchForAnAnimeRequestParams } from "../../useCases/AnimeUseCases/abstractions/ISearchForAnAnimeUseCase";
 
 export interface ISearchForAnAnimeRepository {
-  searchForAnAnime(query: string): Promise<HttpResponse<GetAllAnimesDTO>>;
+  searchForAnAnime(params: ISearchForAnAnimeRequestParams): Promise<HttpResponse<GetAllAnimesDTO>>;
 }
