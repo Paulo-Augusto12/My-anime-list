@@ -193,7 +193,7 @@ export function Home() {
       >
         <a href="#top" style={{ textDecoration: "none" }}>
           <Pagination
-            count={hook.paginationData.totalOfPages}
+            count={hook.paginationData?.lastPage as number}
             page={hook.page}
             onChange={(e, page) => {
               hook.setPage(page);

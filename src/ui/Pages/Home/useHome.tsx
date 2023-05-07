@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimeModel } from "../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
+import { Pagination } from "../../../domain/models/pagination";
 
 // Services
 
@@ -81,10 +82,7 @@ export function useHome() {
   const [loadingTrendingAnimes, setLoadingTrendingAnimes] = useState(false);
   const [loadingAnimes, setLoadingAnimes] = useState(false);
   const [page, setPage] = useState(1);
-  const [paginationData, setpaginationData] = useState({
-    page: 0,
-    totalOfPages: 0,
-  });
+  const [paginationData, setpaginationData] = useState<Pagination>();
 
   async function getAnimes() {
     setLoadingAnimes(true);
@@ -95,10 +93,7 @@ export function useHome() {
     try {
       const data = await getAnimeUseCase.execute(params);
       setAnimes(data.animes);
-      setpaginationData({
-        page: page,
-        totalOfPages: data.paginationInfo.lastPage,
-      });
+      setpaginationData(data.paginationInfo);
       setLoadingAnimes(false);
     } catch (err) {
       setLoadingAnimes(false);
@@ -109,11 +104,17 @@ export function useHome() {
   async function searchAnime() {
     setLoadingAnimes(true);
     try {
-      const data = await searchForAnAnimeUseCase.execute(animeQuery);
+      const params = {
+        page,
+        limit: 24,
+        query: animeQuery,
+      };
+      const data = await searchForAnAnimeUseCase.execute(params);
 
-      setAnimes(data);
+      setAnimes(data.animes);
       setAnimeQuery("");
       setLoadingAnimes(false);
+      setpaginationData(data.paginationInfo);
     } catch (err) {
       setLoadingAnimes(false);
       console.log(JSON.stringify(err));
