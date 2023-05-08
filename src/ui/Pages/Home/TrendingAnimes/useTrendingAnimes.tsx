@@ -94,7 +94,7 @@ export function useTrendingAnimes() {
     actions: {},
     visualElements: {
       characterPhoto,
-      trendingAnimes
+      trendingAnimes,
     },
   };
 }
