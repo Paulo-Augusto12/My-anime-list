@@ -1,15 +1,21 @@
 import React from "react";
 
-// Material ui components
+// Components
 
-import { Box, Skeleton, Typography } from "@mui/material";
+import { Box, Button, Skeleton, Typography } from "@mui/material";
+import { Card } from "../../../Components/Card";
+
+//
+
+// icons
+
+import { ArrowRight } from "@phosphor-icons/react";
 
 //
 
 // Hook
 
 import { useTrendingAnimes } from "./useTrendingAnimes";
-import { Card } from "../../../Components/Card";
 
 //
 
@@ -82,6 +88,39 @@ export function TrendingAnimes() {
             )
           )}
         </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "2rem",
+        }}
+      >
+        <a href="#animes" style={{ textDecoration: "none", width: "15%" }}>
+          <Button
+            sx={{
+              height: "25px",
+              backgroundColor: "#d7d7d7",
+              padding: "1.8rem",
+              color: "black",
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              borderRadius: "55px",
+              textTransform: "none",
+              fontWeight: "700",
+              fontSize: "16px",
+              "&:hover": {
+                backgroundColor: "#4361ee",
+                color: "#ffff",
+              },
+            }}
+          >
+            View All Anime
+            <ArrowRight size={"16px"} />
+          </Button>
+        </a>
       </Box>
     </Box>
   );
