@@ -25,13 +25,15 @@ import { HttpResponse } from "../domain/models/httpResponse";
 import { IGetTrendingMangasRepository } from "../domain/interfaces/MangaRepository/IGetTrendingMangasRepository";
 import { GetTrendingMangasDTO } from "../domain/dto/GetTrendingMangasDTO";
 import { IGetTrendingMangasRequestParams } from "../domain/useCases/MangaUseCases/abstractions/IGetTrendingMangasUseCase";
+import { IGetARandomMangaRepository } from "../domain/interfaces/MangaRepository/IGetARandomMangaRepository";
+import { GetARandomMangaDTO } from "../domain/dto/GetARandomMangaDTO";
 
 //
 
 export class MangasRepository
   implements
     IGetAllMangaRepository,
-    IGetARandomAnimeRepository,
+    IGetARandomMangaRepository,
     IGetTrendingMangasRepository
 {
   constructor(private httpService: IHttpService) {}
@@ -48,7 +50,7 @@ export class MangasRepository
     return response;
   }
 
-  async getARandomAnime(): Promise<HttpResponse<GetARandomAnimeDTO>> {
+  async getARandomManga(): Promise<HttpResponse<GetARandomMangaDTO>> {
     const response = await this.httpService.getData(
       "https://api.jikan.moe/v4/random/manga",
       {}
