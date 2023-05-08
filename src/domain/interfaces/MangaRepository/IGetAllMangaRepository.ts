@@ -1,3 +1,4 @@
+import { GetAllMangaDTO } from "../../dto/GetAllMangaDTO";
 import { HttpResponse } from "../../models/httpResponse";
 import { IGetAllMangaRequestParams } from "../../useCases/MangaUseCases/abstractions/IGetAllMangaUseCase";
 
