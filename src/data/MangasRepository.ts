@@ -1,20 +1,25 @@
 // Repository Interfaces
 
 import { IGetAllMangaRepository } from "../domain/interfaces/MangaRepository/IGetAllMangaRepository";
-import { IGetARandomAnimeRepository } from "../domain/interfaces/AnimeRepository/IGetARandomAnimeRepository";
+import { ISearchForAnMangaRepository } from "../domain/interfaces/MangaRepository/ISearchForAnMangaRepository";
+import { IGetTrendingMangasRepository } from "../domain/interfaces/MangaRepository/IGetTrendingMangasRepository";
+import { IGetARandomMangaRepository } from "../domain/interfaces/MangaRepository/IGetARandomMangaRepository";
 
 //
 
 // DTO's
 
 import { GetAllMangaDTO } from "../domain/dto/GetAllMangaDTO";
-import { GetARandomAnimeDTO } from "../domain/dto/GetARandomAnimeDTO";
+import { GetARandomMangaDTO } from "../domain/dto/GetARandomMangaDTO";
+import { GetTrendingMangasDTO } from "../domain/dto/GetTrendingMangasDTO";
 
 //
 
 // Request params
 
 import { IGetAllMangaRequestParams } from "../domain/useCases/MangaUseCases/abstractions/IGetAllMangaUseCase";
+import { ISearchForAnMangaRequestParams } from "../domain/useCases/MangaUseCases/abstractions/ISearchForAnMangaUseCase";
+import { IGetTrendingMangasRequestParams } from "../domain/useCases/MangaUseCases/abstractions/IGetTrendingMangasUseCase";
 
 //
 
@@ -22,11 +27,6 @@ import { IGetAllMangaRequestParams } from "../domain/useCases/MangaUseCases/abst
 
 import { IHttpService } from "../domain/interfaces/http/IHttpService";
 import { HttpResponse } from "../domain/models/httpResponse";
-import { IGetTrendingMangasRepository } from "../domain/interfaces/MangaRepository/IGetTrendingMangasRepository";
-import { GetTrendingMangasDTO } from "../domain/dto/GetTrendingMangasDTO";
-import { IGetTrendingMangasRequestParams } from "../domain/useCases/MangaUseCases/abstractions/IGetTrendingMangasUseCase";
-import { IGetARandomMangaRepository } from "../domain/interfaces/MangaRepository/IGetARandomMangaRepository";
-import { GetARandomMangaDTO } from "../domain/dto/GetARandomMangaDTO";
 
 //
 
@@ -34,7 +34,8 @@ export class MangasRepository
   implements
     IGetAllMangaRepository,
     IGetARandomMangaRepository,
-    IGetTrendingMangasRepository
+    IGetTrendingMangasRepository,
+    ISearchForAnMangaRepository
 {
   constructor(private httpService: IHttpService) {}
 
@@ -76,6 +77,23 @@ export class MangasRepository
         type,
       }
     );
+    return response;
+  }
+
+  async searchForAnManga({
+    page,
+    limit,
+    query,
+  }: ISearchForAnMangaRequestParams): Promise<HttpResponse<GetAllMangaDTO>> {
+    const response = await this.httpService.getData(
+      `https://api.jikan.moe/v4/manga?q=${query}&page=${page}&limit=${limit}`,
+      {
+        page,
+        limit,
+        query,
+      }
+    );
+
     return response;
   }
 }
