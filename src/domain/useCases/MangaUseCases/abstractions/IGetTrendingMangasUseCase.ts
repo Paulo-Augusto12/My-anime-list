@@ -23,10 +23,10 @@ enum mangaFilterType {
 }
 
 export interface IGetTrendingMangasRequestParams {
-    type: mangaQueryType;
-    filter: mangaFilterType,
-    page: number;
-    limit: number
+  type: mangaQueryType;
+  filter: mangaFilterType;
+  page: number;
+  limit: number;
 }
 
 export interface IGetTrendingMangasResponse {

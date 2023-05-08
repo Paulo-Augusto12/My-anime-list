@@ -3,7 +3,7 @@ import { Pagination } from "../models/Pagination";
 
 export interface IGetAllMangaResponse {
   mangas: Manga[];
-  paginationData: Pagination
+  paginationData: Pagination;
 }
 
 export interface IGetAllMangaRequestParams {
