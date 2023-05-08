@@ -1,11 +1,8 @@
 import React from "react";
-import { Home } from "./ui/Pages/Home";
-
+import { AppRoutes } from "./ui/Routes";
 function App() {
   return (
-    <>
-      <Home />
-    </>
+   <AppRoutes />
   );
 }
 

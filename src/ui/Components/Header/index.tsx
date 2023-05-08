@@ -18,6 +18,7 @@ import {
 
 import { useHeader } from "./useHeader";
 import { MagnifyingGlass } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 //
 
@@ -58,6 +59,8 @@ export function Header({
           MyAnimeList
         </Typography>
         {hook.headerNavItems.map((element) => (
+          <Link to={element.path}>
+          
           <Button
             sx={{
               color: element.id === hook.selectedElement ? "black" : "#495057",
@@ -74,6 +77,7 @@ export function Header({
           >
             <Typography key={element.id}>{element.label}</Typography>
           </Button>
+          </Link>
         ))}
       </Box>
       <Box sx={{ width: "25%" }}>

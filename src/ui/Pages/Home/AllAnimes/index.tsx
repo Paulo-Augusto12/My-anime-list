@@ -17,11 +17,11 @@ export function AllAnimes({
   animes,
   paginationData,
   onPageChange,
-  loading
+  loading,
 }: IAllAnimesProps) {
   return (
     <Box>
-      {loading  ? (
+      {loading ? (
         <Skeleton
           height={"1607px"}
           variant="rectangular"
