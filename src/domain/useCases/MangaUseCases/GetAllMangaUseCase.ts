@@ -1,11 +1,25 @@
+// Repository interface
+
 import { IGetAllMangaRepository } from "../../interfaces/MangaRepository/IGetAllMangaRepository";
+
+//
+
+// Use case interface
+
 import {
   IGetAllMangaRequestParams,
   IGetAllMangaResponse,
   IGetAllMangaUseCase,
 } from "./abstractions/IGetAllMangaUseCase";
+
+//
+
+// Models
+
 import { Manga } from "./models/Manga";
 import { Pagination } from "./models/Pagination";
+
+//
 
 export class GetAllMangaUseCase implements IGetAllMangaUseCase {
   constructor(private repository: IGetAllMangaRepository) {}
