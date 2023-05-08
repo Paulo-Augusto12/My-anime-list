@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { AnimeModel } from "../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
-import { Pagination } from "../../../domain/models/pagination";
 
 // Services
 
@@ -11,22 +10,13 @@ import { RequestService } from "../../../domain/services/requestService";
 // Repositories
 
 import { AnimesRepository } from "../../../data/AnimesRepository";
-import { CharactersRepository } from "../../../data/CharactersRepository";
 
 //
 
 // Use cases
 
 import { SearchForAnAnimeUseCase } from "../../../domain/useCases/AnimeUseCases/SearchForAnAnimeUseCase";
-import { GetTrendingAnimesUseCase } from "../../../domain/useCases/AnimeUseCases/GetTrendingAnimesUseCase";
 import { GetAllAnimeUseCase } from "../../../domain/useCases/AnimeUseCases/GetAllAnimesUseCase";
-import { GetARandomCharacterUseCase } from "../../../domain/useCases/CharacterUseCase/GetARandomCharacterUseCase";
-
-//
-
-// Params
-
-import { IGetTrendingAnimeRequestParams } from "../../../domain/useCases/AnimeUseCases/abstractions/IGetTrendingAnimesUseCase";
 
 //
 
@@ -42,12 +32,6 @@ const animeRepository = new AnimesRepository(httpService);
 
 //
 
-// Characters Repository
-
-const charactersRepository = new CharactersRepository(httpService);
-
-//
-
 //  getAllAnimesUseCase
 
 const getAnimeUseCase = new GetAllAnimeUseCase(animeRepository);
@@ -60,31 +44,15 @@ const searchForAnAnimeUseCase = new SearchForAnAnimeUseCase(animeRepository);
 
 //
 
-// getTrendingAnimesUseCase
-
-const getTrendingAnimesUseCase = new GetTrendingAnimesUseCase(animeRepository);
-
-//
-
-// getARandomCharacterUseCase
-
-const getARandomCharacterUseCase = new GetARandomCharacterUseCase(
-  charactersRepository
-);
-
-//
-
 export function useHome() {
   const [animes, setAnimes] = useState<AnimeModel[]>([]);
-  const [trendingAnimes, setTrendingAnimes] = useState<AnimeModel[]>([]);
   const [animeQuery, setAnimeQuery] = useState("");
-  const [randomCharacterPhoto, setRandomCharacterPhoto] = useState("");
-  const [loadingTrendingAnimes, setLoadingTrendingAnimes] = useState(false);
   const [loadingAnimes, setLoadingAnimes] = useState(false);
   const [page, setPage] = useState(1);
-  const [paginationData, setpaginationData] = useState<Pagination>();
-  const [animeSearchPaginationData, setAnimeSearchPaginationData] =
-    useState<Pagination>();
+  const [paginationData, setpaginationData] = useState({
+    page: 0,
+    totalOfPages: 0,
+  });
 
   async function getAnimes() {
     setLoadingAnimes(true);
@@ -95,9 +63,11 @@ export function useHome() {
     try {
       const data = await getAnimeUseCase.execute(params);
       setAnimes(data.animes);
-      setpaginationData(data.paginationInfo);
+      setpaginationData({
+        page: page,
+        totalOfPages: data.paginationInfo.lastPage,
+      });
       setLoadingAnimes(false);
-      setAnimeSearchPaginationData(undefined);
     } catch (err) {
       setLoadingAnimes(false);
       console.log(JSON.stringify(err));
@@ -115,55 +85,37 @@ export function useHome() {
       const data = await searchForAnAnimeUseCase.execute(params);
 
       setAnimes(data.animes);
+      setAnimeQuery("");
       setLoadingAnimes(false);
-      setAnimeSearchPaginationData(data.paginationInfo);
-      setpaginationData(undefined);
     } catch (err) {
       setLoadingAnimes(false);
       console.log(JSON.stringify(err));
     }
   }
 
-  async function getTrendingAnimes() {
-    setLoadingTrendingAnimes(true);
+  async function handlePageNavigation(navigateToPage: number) {
+    setLoadingAnimes(true);
+    const params = {
+      page: navigateToPage,
+      limit: 24,
+    };
+
     try {
-      const params: IGetTrendingAnimeRequestParams = {
-        page: 1,
-        limit: 5,
-        type: "tv",
-        filterBy: "bypopularity",
-      };
+      const data = await getAnimeUseCase.execute(params);
 
-      const data = await getTrendingAnimesUseCase.execute(params);
-
-      setTrendingAnimes(data);
-      setLoadingTrendingAnimes(false);
+      setAnimes(data.animes);
+      setpaginationData({
+        page: navigateToPage,
+        totalOfPages: paginationData.totalOfPages,
+      });
+      setLoadingAnimes(false);
     } catch (err) {
-      setLoadingTrendingAnimes(false);
       console.log(JSON.stringify(err));
     }
   }
 
-  async function getARandomCharacterPhoto() {
-    const data = await getARandomCharacterUseCase.execute();
-
-    setRandomCharacterPhoto(data.photo);
-  }
-
   useEffect(() => {
-    paginationData ? getAnimes() : searchAnime();
-  }, [page]);
-
-  useEffect(() => {
-    if (!trendingAnimes.length) {
-      getTrendingAnimes();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!randomCharacterPhoto.trim()) {
-      getARandomCharacterPhoto();
-    }
+    getAnimes();
   }, []);
 
   return {
@@ -171,14 +123,11 @@ export function useHome() {
     animeQuery,
     setAnimeQuery,
     searchAnime,
-    randomCharacterPhoto,
-    trendingAnimes,
-    loadingTrendingAnimes,
     page,
     setPage,
     paginationData,
     loadingAnimes,
+    handlePageNavigation,
     getAnimes,
-    animeSearchPaginationData,
   };
 }
