@@ -1,12 +1,14 @@
 // Repository Interfaces
 
 import { IGetAllMangaRepository } from "../domain/interfaces/MangaRepository/IGetAllMangaRepository";
+import { IGetARandomAnimeRepository } from "../domain/interfaces/AnimeRepository/IGetARandomAnimeRepository";
 
 //
 
 // DTO's
 
 import { GetAllMangaDTO } from "../domain/dto/GetAllMangaDTO";
+import { GetARandomAnimeDTO } from "../domain/dto/GetARandomAnimeDTO";
 
 //
 
@@ -20,8 +22,6 @@ import { IGetAllMangaRequestParams } from "../domain/useCases/MangaUseCases/abst
 
 import { IHttpService } from "../domain/interfaces/http/IHttpService";
 import { HttpResponse } from "../domain/models/httpResponse";
-import { IGetARandomAnimeRepository } from "../domain/interfaces/AnimeRepository/IGetARandomAnimeRepository";
-import { GetARandomAnimeDTO } from "../domain/dto/GetARandomAnimeDTO";
 
 //
 
