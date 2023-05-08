@@ -1,13 +1,27 @@
 import React from "react";
 
-import { useAllAnimes } from "./useAllAnimes";
-import { Box, Grid, Skeleton, Typography } from "@mui/material";
+import { Box, Grid, Pagination, Skeleton, Typography } from "@mui/material";
 import { Card } from "../../../Components/Card";
-export function AllAnimes() {
-  const { actions, states } = useAllAnimes();
+import { AnimeModel } from "../../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
+
+interface IAllAnimesProps {
+  animes: AnimeModel[];
+  paginationData: {
+    page: number;
+    totalOfPages: number;
+  };
+  onPageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
+  loading: boolean;
+}
+export function AllAnimes({
+  animes,
+  paginationData,
+  onPageChange,
+  loading
+}: IAllAnimesProps) {
   return (
     <Box>
-      {!states.animes.length ? (
+      {loading  ? (
         <Skeleton
           height={"1607px"}
           variant="rectangular"
@@ -35,20 +49,35 @@ export function AllAnimes() {
             id="animes"
             sx={{ scrollBehavior: "smooth", marginTop: "18px" }}
           >
-            {states.animes.map(
-              ({ name, episodes, photo, descrition }, index) => (
-                <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
-                  <Card
-                    animeName={name}
-                    animeEpisodesQtde={episodes}
-                    animePhoto={photo}
-                  />
-                </Grid>
-              )
-            )}
+            {animes.map(({ name, episodes, photo, descrition }, index) => (
+              <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
+                <Card
+                  animeName={name}
+                  animeEpisodesQtde={episodes}
+                  animePhoto={photo}
+                />
+              </Grid>
+            ))}
           </Grid>
         </Box>
       )}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "3rem",
+        }}
+      >
+        <a href="#top" style={{ textDecoration: "none" }}>
+          <Pagination
+            page={paginationData.page}
+            count={paginationData.totalOfPages}
+            color="primary"
+            onChange={(e, page) => onPageChange(e, page)}
+          />
+        </a>
+      </Box>
     </Box>
   );
 }

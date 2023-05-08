@@ -33,13 +33,26 @@ export function Home() {
       />
       {/* Trending animes section */}
 
-      <TrendingAnimes />
+      <TrendingAnimes
+        onResetAction={() => {
+          hook.setPage(1);
+          hook.getAnimes();
+        }}
+      />
 
       {/* Trending animes section */}
 
       {/* All animes section */}
 
-      <AllAnimes />
+      <AllAnimes
+        animes={hook.animes}
+        paginationData={hook.paginationData}
+        onPageChange={(e, page) => {
+          hook.setPage(page);
+          hook.handlePageNavigation(page);
+        }}
+        loading={hook.loadingAnimes}
+      />
 
       {/* All animes section */}
     </Box>

@@ -19,7 +19,10 @@ import { useTrendingAnimes } from "./useTrendingAnimes";
 
 //
 
-export function TrendingAnimes() {
+interface ITrendingAnimesProps {
+  onResetAction: () => void;
+}
+export function TrendingAnimes({ onResetAction }: ITrendingAnimesProps) {
   const { actions, states, visualElements } = useTrendingAnimes();
 
   return (
@@ -115,6 +118,9 @@ export function TrendingAnimes() {
                 backgroundColor: "#4361ee",
                 color: "#ffff",
               },
+            }}
+            onClick={() => {
+              onResetAction();
             }}
           >
             View All Anime
