@@ -1,11 +1,21 @@
-// Models
+// useCase interfaces
 
-import { IGetTrendingMangasRepository } from "../../interfaces/MangaRepository/IGetTrendingMangasRepository";
 import {
   IGetTrendingMangasRequestParams,
   IGetTrendingMangasResponse,
   IGetTrendingMangasUseCase,
 } from "./abstractions/IGetTrendingMangasUseCase";
+
+//
+
+// Repository interfaces
+
+import { IGetTrendingMangasRepository } from "../../interfaces/MangaRepository/IGetTrendingMangasRepository";
+
+//
+
+// Models
+
 import { Manga } from "./models/Manga";
 import { Pagination } from "./models/Pagination";
 
