@@ -3,7 +3,6 @@ import React from "react";
 import { Box, Grid, Pagination, Skeleton, Typography } from "@mui/material";
 import { Card } from "../../../Components/Card";
 import { AnimeModel } from "../../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
-import { Select } from "../../../Components/Select";
 
 interface IAllAnimesProps {
   animes: AnimeModel[];
@@ -38,34 +37,9 @@ export function AllAnimes({
             marginTop: "18px",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "row", gap: "1.5rem", alignItems: 'center' }}>
-            <Typography variant="h5" fontWeight={700}>
-              Animes
-            </Typography>
-            <Box>
-              <Select
-                options={[
-                  {
-                    name: "test",
-                    value: 1,
-                  },
-                  {
-                    name: "test 2",
-                    value: 2,
-                  },
-                  {
-                    name: "test 3",
-                    value: 3,
-                  },
-                ]}
-                getOptionLabel={(option) => option.name}
-                onSelectChange={(newValue) => {
-                  console.log(newValue);
-                }}
-                selectLabel={Option.name}
-              />
-            </Box>
-          </Box>
+          <Typography variant="h5" fontWeight={700}>
+            Animes
+          </Typography>
           <Grid
             container
             spacing={4}
