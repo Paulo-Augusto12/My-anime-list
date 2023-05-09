@@ -60,23 +60,23 @@ export function Header({
         </Typography>
         {hook.headerNavItems.map((element) => (
           <Link to={element.path}>
-          
-          <Button
-            sx={{
-              color: element.id === hook.selectedElement ? "black" : "#495057",
-              border: "none",
-              fontWeight:
-                element.id === hook.selectedElement ? "bold" : "regular",
-              outline: "none",
-              textTransform: "none",
-            }}
-            onClick={() => {
-              hook.setSelectedElement(element.id);
-            }}
-            key={element.id}
-          >
-            <Typography key={element.id}>{element.label}</Typography>
-          </Button>
+            <Button
+              sx={{
+                color:
+                  element.id === hook.selectedElement ? "black" : "#495057",
+                border: "none",
+                fontWeight:
+                  element.id === hook.selectedElement ? "bold" : "regular",
+                outline: "none",
+                textTransform: "none",
+              }}
+              onClick={() => {
+                hook.setSelectedElement(element.id);
+              }}
+              key={element.id}
+            >
+              <Typography key={element.id}>{element.label}</Typography>
+            </Button>
           </Link>
         ))}
       </Box>
