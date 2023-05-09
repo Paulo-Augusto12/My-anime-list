@@ -23,14 +23,14 @@ import { Link } from "react-router-dom";
 //
 
 interface IHeaderProps {
-  animeQueryValue: string;
-  setSearchBarAnimeQueryValue: (value: React.SetStateAction<string>) => void;
+  QueryValue: string;
+  setSearchBarQueryValue: (value: React.SetStateAction<string>) => void;
   handleSubmit: () => void;
   scrollTo: string;
 }
 export function Header({
-  animeQueryValue,
-  setSearchBarAnimeQueryValue,
+  QueryValue,
+  setSearchBarQueryValue,
   handleSubmit,
   scrollTo,
 }: IHeaderProps) {
@@ -101,10 +101,10 @@ export function Header({
             ),
           }}
           onChange={(e) => {
-            setSearchBarAnimeQueryValue(e.target.value);
+            setSearchBarQueryValue(e.target.value);
           }}
           label="Search a anime"
-          value={animeQueryValue}
+          value={QueryValue}
         />
       </Box>
     </Box>

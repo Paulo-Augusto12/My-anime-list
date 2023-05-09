@@ -83,9 +83,9 @@ export function TrendingAnimes({ onResetAction }: ITrendingAnimesProps) {
           {visualElements.trendingAnimes.map(
             ({ name, photo, episodes, descrition }, index) => (
               <Card
-                animeName={name}
-                animeEpisodesQtde={episodes}
-                animePhoto={photo}
+                Name={name}
+                EpisodesQtde={episodes}
+                Photo={photo}
                 key={index}
               />
             )

@@ -22,8 +22,8 @@ export function Home() {
       }}
     >
       <Header
-        animeQueryValue={hook.animeQuery}
-        setSearchBarAnimeQueryValue={(e) => {
+        QueryValue={hook.animeQuery}
+        setSearchBarQueryValue={(e) => {
           hook.setAnimeQuery(e);
         }}
         handleSubmit={() => {
