@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "../Pages/Home";
-import { MangaHome } from "../Pages/Manga";
 import { RandomAnime } from "../Pages/RandomAnime";
 import { TopAnime } from "../Pages/TopAnime";
+import { MangaHome } from "../Pages/HomeMangas";
 
 // Imports de paginas
 

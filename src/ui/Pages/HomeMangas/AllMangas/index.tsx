@@ -1,7 +1,8 @@
 import React from "react";
-import { Manga } from "../../../../domain/useCases/MangaUseCases/models/Manga";
 import { Box, Grid, Pagination, Skeleton, Typography } from "@mui/material";
+import { Manga } from "../../../../domain/useCases/MangaUseCases/models/Manga";
 import { Card } from "../../../Components/Card";
+
 
 interface IAllMangasProps {
   mangas: Manga[];
