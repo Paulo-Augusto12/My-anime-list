@@ -32,7 +32,7 @@ export function useAllAnimes() {
       ],
     },
     {
-      statusOPtions: [
+      statusOptions: [
         {
           option: "airing",
           value: "airing",
