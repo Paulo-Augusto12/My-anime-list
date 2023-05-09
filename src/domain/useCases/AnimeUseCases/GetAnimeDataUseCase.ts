@@ -8,6 +8,12 @@ import {
 
 //
 
+// repository interfaces
+
+import { IGetAnimeDataRepository } from "../../interfaces/AnimeRepository/IGetAnimeDataRepository";
+
+//
+
 export class GetAnimeDataUseCase implements IGetAnimeDataUseCase {
   constructor(private repository: IGetAnimeDataRepository) {}
 
