@@ -13,12 +13,12 @@ import { Box, Typography } from "@mui/material";
 //
 
 interface ICardProps {
-  animeName: string;
-  animePhoto: string;
-  animeEpisodesQtde: number;
+  Name: string;
+  Photo: string;
+  EpisodesQtde: number;
 }
 
-export function Card({ animeName, animeEpisodesQtde, animePhoto }: ICardProps) {
+export function Card({ Name, EpisodesQtde, Photo }: ICardProps) {
   return (
     <Box
       sx={{
@@ -47,7 +47,7 @@ export function Card({ animeName, animeEpisodesQtde, animePhoto }: ICardProps) {
           }}
         >
           <img
-            src={animePhoto}
+            src={Photo}
             style={{
               objectFit: "cover",
               height: "300px",
@@ -61,10 +61,10 @@ export function Card({ animeName, animeEpisodesQtde, animePhoto }: ICardProps) {
         color="black"
         sx={{ fontSize: "1.25rem", fontWeight: "bold" }}
       >
-        {animeName}
+        {Name}
       </Typography>
       <Typography sx={{ marginTop: "-.75rem" }}>
-        {animeEpisodesQtde} Episodes
+        {EpisodesQtde} Episodes
       </Typography>
     </Box>
   );
