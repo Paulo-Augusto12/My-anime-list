@@ -52,9 +52,9 @@ export function AllAnimes({
             {animes.map(({ name, episodes, photo, descrition }, index) => (
               <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
                 <Card
-                  animeName={name}
-                  animeEpisodesQtde={episodes}
-                  animePhoto={photo}
+                  Name={name}
+                  EpisodesQtde={episodes}
+                  Photo={photo}
                 />
               </Grid>
             ))}
