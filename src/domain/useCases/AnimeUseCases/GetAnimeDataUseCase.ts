@@ -1,3 +1,13 @@
+// use case interfaces
+
+import {
+  IGetAnimeDataRequestParams,
+  IGetAnimeDataResponse,
+  IGetAnimeDataUseCase,
+} from "./abstractions/IGetAnimeDataUseCase";
+
+//
+
 export class GetAnimeDataUseCase implements IGetAnimeDataUseCase {
   constructor(private repository: IGetAnimeDataRepository) {}
 
