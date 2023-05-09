@@ -77,9 +77,14 @@ export function useHome() {
   async function searchAnime() {
     setLoadingAnimes(true);
     try {
-      const data = await searchForAnAnimeUseCase.execute(animeQuery);
+      const params = {
+        page,
+        limit: 24,
+        query: animeQuery,
+      };
+      const data = await searchForAnAnimeUseCase.execute(params);
 
-      setAnimes(data);
+      setAnimes(data.animes);
       setAnimeQuery("");
       setLoadingAnimes(false);
     } catch (err) {
