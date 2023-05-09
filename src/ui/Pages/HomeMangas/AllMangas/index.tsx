@@ -2,22 +2,19 @@ import React from "react";
 import { Box, Grid, Pagination, Skeleton, Typography } from "@mui/material";
 import { Manga } from "../../../../domain/useCases/MangaUseCases/models/Manga";
 import { Card } from "../../../Components/Card";
+import { PaginationModel } from "../../../../domain/useCases/MangaUseCases/models/Pagination";
 
 
 interface IAllMangasProps {
   mangas: Manga[];
-  PaginationData: {
-    page: number;
-    TotalOfPages: number;
-  };
-
+  paginationData: PaginationModel
   onPageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
   loading: boolean;
 }
 
 export function AllMangas({
   mangas,
-  PaginationData,
+  paginationData,
   onPageChange,
   loading,
 }: IAllMangasProps) {
@@ -69,8 +66,8 @@ export function AllMangas({
       >
         <a href="#top" style={{ textDecoration: "none" }}>
           <Pagination
-            page={PaginationData.page}
-            count={PaginationData.TotalOfPages}
+            page={paginationData.page}
+            count={paginationData.totalOfPages}
             color="primary"
             onChange={(e, page) => onPageChange(e, page)}
           />
