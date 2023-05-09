@@ -8,25 +8,33 @@ export function useHeader() {
       label: "Anime",
       id: 1,
       path: "/",
-      onClick: () => {<Link to={"/"} />},
+      onClick: () => {
+        <Link to={"/"} />;
+      },
     },
     {
       label: "Manga",
       id: 2,
       path: "/manga/home",
-      onClick: () => {<Link to={"/manga"} />},
+      onClick: () => {
+        <Link to={"/manga"} />;
+      },
     },
     {
       label: "Random Anime",
       id: 3,
       path: "/anime/random",
-      onClick: () => {<Link to={"/random"} />},
+      onClick: () => {
+        <Link to={"/random"} />;
+      },
     },
     {
       label: "Top Anime",
       id: 4,
       path: "/top",
-      onClick: () => {<Link to={"/top"} />},
+      onClick: () => {
+        <Link to={"/top"} />;
+      },
     },
   ];
 
