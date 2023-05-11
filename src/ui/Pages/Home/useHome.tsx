@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimeModel } from "../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
 
-// Services
-
-import { RequestService } from "../../../domain/services/requestService";
-
-//
-
 // Dependencies
 
 import { useCases } from "../../../di";
