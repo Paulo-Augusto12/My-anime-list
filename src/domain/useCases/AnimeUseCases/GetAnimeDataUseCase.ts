@@ -1,10 +1,6 @@
 // use case interfaces
 
-import {
-  IGetAnimeDataRequestParams,
-  IGetAnimeDataResponse,
-  IGetAnimeDataUseCase,
-} from "./abstractions/IGetAnimeDataUseCase";
+import { IGetAnimeDataUseCase } from "./abstractions/IGetAnimeDataUseCase";
 
 //
 
@@ -14,14 +10,27 @@ import { IGetAnimeDataRepository } from "../../interfaces/AnimeRepository/IGetAn
 
 //
 
+// models
+
+import { FullAnimeData } from "./Models/FullAnimeData";
+
+//
+
 export class GetAnimeDataUseCase implements IGetAnimeDataUseCase {
   constructor(private repository: IGetAnimeDataRepository) {}
 
-  async execute(
-    params: IGetAnimeDataRequestParams
-  ): Promise<IGetAnimeDataResponse> {
-    const response = await this.repository.getAnimeData(params);
+  async execute(animeId: number): Promise<FullAnimeData> {
+    const response = await this.repository.getAnimeData(animeId);
 
-    return {};
+    const data = response.data.data;
+
+    const anime = new FullAnimeData(
+      data.title,
+      data.images.webp.large_image_url,
+      data.mal_id,
+      data.aired.from + data.aired.to
+    );
+
+    return anime;
   }
 }

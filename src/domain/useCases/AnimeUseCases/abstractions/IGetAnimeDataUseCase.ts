@@ -1,7 +1,7 @@
-export interface IGetAnimeDataRequestParams {}
+import { FullAnimeData } from "../Models/FullAnimeData";
 
-export interface IGetAnimeDataResponse {}
+
 
 export interface IGetAnimeDataUseCase {
-  execute(params: IGetAnimeDataRequestParams): Promise<IGetAnimeDataResponse>;
+  execute(animeId: number): Promise<FullAnimeData>;
 }
