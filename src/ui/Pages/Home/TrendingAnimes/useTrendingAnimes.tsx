@@ -1,66 +1,29 @@
 import React, { useEffect, useState } from "react";
 
-// service
+// Dependency injection
 
-import { RequestService } from "../../../../domain/services/requestService";
-
-//
-
-// repositories
-
-import { AnimesRepository } from "../../../../data/AnimesRepository";
-import { CharactersRepository } from "../../../../data/CharactersRepository";
-
-//
-
-// use cases
-
-import { GetARandomCharacterUseCase } from "../../../../domain/useCases/CharacterUseCase/GetARandomCharacterUseCase";
-import { GetTrendingAnimesUseCase } from "../../../../domain/useCases/AnimeUseCases/GetTrendingAnimesUseCase";
+import { useCases } from "../../../../di";
 
 //
 
 // Request params
 
 import { IGetTrendingAnimeRequestParams } from "../../../../domain/useCases/AnimeUseCases/abstractions/IGetTrendingAnimesUseCase";
+
+//
+
+// Models
+
 import { AnimeModel } from "../../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
 
 //
 
 export function useTrendingAnimes() {
-  // ------------------------ Depencency injection ------------------------ //
-
-  // Http service
-
-  const httpService = new RequestService();
-
-  //
-
-  // Repositories
-
-  const charactersRepository = new CharactersRepository(httpService);
-  const animesRepository = new AnimesRepository(httpService);
-
-  //
-
-  // Use Cases
-
-  const getARandomCharacterUseCase = new GetARandomCharacterUseCase(
-    charactersRepository
-  );
-  const getTrendingAnimesUseCase = new GetTrendingAnimesUseCase(
-    animesRepository
-  );
-
-  //
-
-  // ------------------------ Depencency injection ------------------------ //
-
   const [characterPhoto, setCharacterPhoto] = useState("");
   const [trendingAnimes, setTrendingAnimes] = useState<AnimeModel[]>([]);
 
   async function randomCharacterPhoto() {
-    const data = await getARandomCharacterUseCase.execute();
+    const data = await useCases.characters.getARandomCharacter.execute();
 
     setCharacterPhoto(data.photo);
   }
@@ -72,7 +35,7 @@ export function useTrendingAnimes() {
       type: "tv",
       filterBy: "bypopularity",
     };
-    const data = await getTrendingAnimesUseCase.execute(params);
+    const data = await useCases.animes.getTrendingAnimesUseCase.execute(params);
 
     setTrendingAnimes(data);
   }
