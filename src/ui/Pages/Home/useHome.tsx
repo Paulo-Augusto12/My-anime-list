@@ -7,6 +7,12 @@ import { RequestService } from "../../../domain/services/requestService";
 
 //
 
+// Dependencies
+
+import { useCases } from "../../../di";
+
+//
+
 // Repositories
 
 import { AnimesRepository } from "../../../data/AnimesRepository";
@@ -61,7 +67,7 @@ export function useHome() {
       limit: 24,
     };
     try {
-      const data = await getAnimeUseCase.execute(params);
+      const data = await useCases.animes.getAllAnimesUseCase.execute(params);
       setAnimes(data.animes);
       setpaginationData({
         page: page,
