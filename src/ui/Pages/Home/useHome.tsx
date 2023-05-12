@@ -1,46 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { AnimeModel } from "../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
 
-// Services
+// Dependencies
 
-import { RequestService } from "../../../domain/services/requestService";
-
-//
-
-// Repositories
-
-import { AnimesRepository } from "../../../data/AnimesRepository";
-
-//
-
-// Use cases
-
-import { SearchForAnAnimeUseCase } from "../../../domain/useCases/AnimeUseCases/SearchForAnAnimeUseCase";
-import { GetAllAnimeUseCase } from "../../../domain/useCases/AnimeUseCases/GetAllAnimesUseCase";
-
-//
-
-//  Http service
-
-const httpService = new RequestService();
-
-//
-
-//  Anime Repository
-
-const animeRepository = new AnimesRepository(httpService);
-
-//
-
-//  getAllAnimesUseCase
-
-const getAnimeUseCase = new GetAllAnimeUseCase(animeRepository);
-
-//
-
-// searchForAnAnimeUseCase
-
-const searchForAnAnimeUseCase = new SearchForAnAnimeUseCase(animeRepository);
+import { useCases } from "../../../di";
 
 //
 
@@ -61,7 +24,7 @@ export function useHome() {
       limit: 24,
     };
     try {
-      const data = await getAnimeUseCase.execute(params);
+      const data = await useCases.animes.getAllAnimesUseCase.execute(params);
       setAnimes(data.animes);
       setpaginationData({
         page: page,
@@ -82,7 +45,7 @@ export function useHome() {
         limit: 24,
         query: animeQuery,
       };
-      const data = await searchForAnAnimeUseCase.execute(params);
+      const data = await useCases.animes.searchForAnimesUseCase.execute(params);
 
       setAnimes(data.animes);
       setAnimeQuery("");
@@ -101,7 +64,7 @@ export function useHome() {
     };
 
     try {
-      const data = await getAnimeUseCase.execute(params);
+      const data = await useCases.animes.getAllAnimesUseCase.execute(params);
 
       setAnimes(data.animes);
       setpaginationData({

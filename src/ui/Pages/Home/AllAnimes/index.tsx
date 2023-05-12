@@ -69,7 +69,7 @@ export function AllAnimes({
           marginTop: "3rem",
         }}
       >
-        <a href="#top" style={{ textDecoration: "none" }}>
+        <a href="#animes" style={{ textDecoration: "none" }}>
           <Pagination
             page={paginationData.page}
             count={paginationData.totalOfPages}
