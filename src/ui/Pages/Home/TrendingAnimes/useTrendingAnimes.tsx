@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Dependency injection
 
@@ -19,8 +20,10 @@ import { AnimeModel } from "../../../../domain/useCases/AnimeUseCases/Models/Ani
 //
 
 export function useTrendingAnimes() {
+  const navigate = useNavigate();
   const [characterPhoto, setCharacterPhoto] = useState("");
   const [trendingAnimes, setTrendingAnimes] = useState<AnimeModel[]>([]);
+  const [selectedAnime, setSelectedAnime] = useState<AnimeModel>();
 
   async function randomCharacterPhoto() {
     const data = await useCases.characters.getARandomCharacter.execute();
@@ -40,6 +43,11 @@ export function useTrendingAnimes() {
     setTrendingAnimes(data);
   }
 
+
+  async function handleNavigateToAnimePage(anime: AnimeModel ) {
+    navigate("/anime", { state: {anime} });
+  }
+
   useEffect(() => {
     if (!characterPhoto.trim()) {
       randomCharacterPhoto();
@@ -54,7 +62,9 @@ export function useTrendingAnimes() {
 
   return {
     states: {},
-    actions: {},
+    actions: {
+      handleNavigateToAnimePage
+    },
     visualElements: {
       characterPhoto,
       trendingAnimes,

@@ -87,6 +87,9 @@ export function TrendingAnimes({ onResetAction }: ITrendingAnimesProps) {
                 animeEpisodesQtde={episodes}
                 animePhoto={photo}
                 key={index}
+                onCardClick={() => {
+                  actions.handleNavigateToAnimePage({name, photo, episodes, descrition})
+                }}
               />
             )
           )}
