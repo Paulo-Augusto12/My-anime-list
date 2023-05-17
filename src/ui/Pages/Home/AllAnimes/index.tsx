@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Grid, Pagination, Skeleton, Typography } from "@mui/material";
 import { Card } from "../../../Components/Card";
 import { AnimeModel } from "../../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
+import { useAllAnimes } from "./useAllAnimes";
 
 interface IAllAnimesProps {
   animes: AnimeModel[];
@@ -19,6 +20,7 @@ export function AllAnimes({
   onPageChange,
   loading,
 }: IAllAnimesProps) {
+  const hook = useAllAnimes();
   return (
     <Box>
       {loading ? (
@@ -40,15 +42,29 @@ export function AllAnimes({
           <Typography variant="h5" fontWeight={700}>
             Animes
           </Typography>
-          <Box sx={{ display: "grid", gridTemplateColumns: 'repeat(5, 2fr)', gap: '1rem' }}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(5, 2fr)",
+              gap: "1rem",
+            }}
+          >
             {animes.map(({ name, episodes, photo, descrition }, index) => (
               <Box>
                 <Card
                   animeName={name}
                   animeEpisodesQtde={episodes}
                   animePhoto={photo}
+                  onCardClick={() => {
+                    hook.handleNavigateToAnimePage({
+                      name,
+                      episodes,
+                      photo,
+                      descrition,
+                    });
+                  }}
                 />
-                </Box>
+              </Box>
             ))}
           </Box>
         </Box>

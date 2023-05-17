@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimeModel } from "../../../domain/useCases/AnimeUseCases/Models/AnimeModels";
+import { useNavigate } from "react-router-dom";
 
 // Dependencies
 
@@ -16,6 +17,8 @@ export function useHome() {
     page: 0,
     totalOfPages: 0,
   });
+
+  const navigate = useNavigate();
 
   async function getAnimes() {
     setLoadingAnimes(true);

@@ -16,9 +16,15 @@ interface ICardProps {
   animeName: string;
   animePhoto: string;
   animeEpisodesQtde: number;
+  onCardClick: () => void;
 }
 
-export function Card({ animeName, animeEpisodesQtde, animePhoto }: ICardProps) {
+export function Card({
+  animeName,
+  animeEpisodesQtde,
+  animePhoto,
+  onCardClick,
+}: ICardProps) {
   return (
     <Box
       sx={{
@@ -34,6 +40,9 @@ export function Card({ animeName, animeEpisodesQtde, animePhoto }: ICardProps) {
           outline: "none",
           cursor: "pointer",
           background: "none",
+        }}
+        onClick={() => {
+          onCardClick();
         }}
       >
         <Box
