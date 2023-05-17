@@ -42,7 +42,7 @@ export function useHome() {
     try {
       const params = {
         page,
-        limit: 24,
+        limit: 25,
         query: animeQuery,
       };
       const data = await useCases.animes.searchForAnimesUseCase.execute(params);
