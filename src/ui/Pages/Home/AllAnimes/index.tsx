@@ -40,25 +40,17 @@ export function AllAnimes({
           <Typography variant="h5" fontWeight={700}>
             Animes
           </Typography>
-          <Grid
-            container
-            spacing={4}
-            rowSpacing={8}
-            columnSpacing={20}
-            columns={32}
-            id="animes"
-            sx={{ scrollBehavior: "smooth", marginTop: "18px" }}
-          >
+          <Box sx={{ display: "grid", gridTemplateColumns: 'repeat(5, 2fr)', gap: '1rem' }}>
             {animes.map(({ name, episodes, photo, descrition }, index) => (
-              <Grid item key={index} xs={8} sx={{ maxWidth: "255px" }}>
+              <Box>
                 <Card
                   animeName={name}
                   animeEpisodesQtde={episodes}
                   animePhoto={photo}
                 />
-              </Grid>
+                </Box>
             ))}
-          </Grid>
+          </Box>
         </Box>
       )}
       <Box
